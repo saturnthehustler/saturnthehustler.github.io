@@ -10,8 +10,6 @@ Welcome to my personal portfolio! This repository contains the source code and a
 - [Experience](#experience)
 - [Education](#education)
 - [Contact](#contact)
-- [Setup and Deployment](#setup-and-deployment)
-- [License](#license)
 
 ## About Me
 
@@ -65,10 +63,3 @@ I'm Abdirahman Hassan Abdi, a Python Developer and Machine Learning Engineer ded
 - LinkedIn: [Flyrye](https://www.linkedin.com/in/flyrye)
 - Twitter: [@Intelli9Hacker](https://twitter.com/Intelli9Hacker)
 
-## Setup and Deployment
-
-To run this project locally, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/saturnthehustler/saturnthehustler.github.io.git
