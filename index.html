@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Abdirahman Hassan Abdi - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Arial', sans-serif;
             color: white;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             scroll-behavior: smooth;
@@ -23,7 +22,6 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
         }
 
         nav li {
@@ -43,7 +41,7 @@
         }
 
         section {
-            padding: 80px 20px;
+            padding: 60px 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -76,83 +74,6 @@
             padding: 20px;
             background-color: #333;
         }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .project {
-            margin-bottom: 20px;
-        }
-
-        .project img {
-            width: 100%;
-            height: auto;
-        }
-
-        .project a {
-            color: #ffffff;
-        }
-
-        .skills-bar {
-            background: #444;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .skills-bar div {
-            height: 20px;
-            line-height: 20px;
-            color: white;
-            text-align: right;
-            padding-right: 10px;
-            box-sizing: border-box;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #2575fc;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(to right, #2575fc, #6a11cb);
-            }
-
-            nav {
-                background-color: #111;
-            }
-
-            nav li a {
-                color: #bbb;
-            }
-
-            nav li a:hover {
-                background-color: #333;
-            }
-
-            button {
-                background-color: #333;
-                color: #ffffff;
-            }
-
-            button:hover {
-                background-color: #555;
-            }
-
-            footer {
-                background-color: #111;
-            }
-        }
     </style>
 </head>
 <body>
@@ -175,121 +96,70 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <img src="path/to/your/photo.jpg" alt="Abdirahman Hassan Abdi">
-        <p>Welcome! I'm Abdirahman Hassan Abdi, a Python Developer and Machine Learning Engineer dedicated to using technology to address complex challenges. My career goals include making impactful contributions in the field of AI and continuously expanding my skills. I value innovation, collaboration, and integrity in my work.</p>
+        <p>Welcome! I'm Abdirahman Hassan Abdi, a Python Developer and Machine Learning Engineer dedicated to using technology to address complex challenges...</p>
     </section>
 
     <section id="skills">
         <h2>Skills</h2>
-        <ul>
-            <li>
-                <div class="skills-bar">
-                    <div style="width: 90%;">Python - Advanced</div>
-                </div>
-            </li>
-            <li>
-                <div class="skills-bar">
-                    <div style="width: 80%;">HTML & CSS - Intermediate</div>
-                </div>
-            </li>
-            <li>
-                <div class="skills-bar">
-                    <div style="width: 85%;">Django - Intermediate</div>
-                </div>
-            </li>
-            <!-- Add more skill bars as needed -->
-        </ul>
+        <ul id="skills-list"></ul>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-        <div id="project-list">
-            <div class="project">
-                <h3>Diabetes Prediction Model</h3>
-                <img src="path/to/project-image.jpg" alt="Diabetes Prediction Model">
-                <p>This project uses machine learning to predict diabetes based on health indicators such as age, BMI, blood glucose levels, and more...</p>
-                <a href="https://github.com/saturnthehustler/Machine-Model-for-Diabetes-Prediction.git">View on GitHub</a>
-            </div>
-            <div class="project">
-                <h3>ChapterVerse: Web Scraping & EPUB Conversion</h3>
-                <img src="path/to/project-image.jpg" alt="ChapterVerse">
-                <p>ChapterVerse is designed to scrape online novels and create EPUB files from their chapters. Provides concurrent scraping capabilities...</p>
-                <a href="https://github.com/saturnthehustler/chapterverse-scraper.git">View on GitHub</a>
-            </div>
-            <!-- Add more project cards as needed -->
-        </div>
+        <div id="project-list"></div>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        <div id="experience-list">
-            <div class="experience">
-                <h3>Taaj Services | Data Entry Specialist</h3>
-                <p><strong>Location:</strong> Remote/Uganda</p>
-                <p><strong>Duration:</strong> Feb 2021 - Nov 2023</p>
-                <ul>
-                    <li>Processed an average of 1,200 customer and account source documents per month...</li>
-                    <li>Maintained a 99% accuracy rate in data entry while ensuring all information was kept confidential and secure.</li>
-                    <li>Successfully identified and resolved 20 data entry errors per week, contributing to a significant reduction in data inaccuracies...</li>
-                </ul>
-            </div>
-            <!-- Add more experience cards as needed -->
-        </div>
+        <div id="experience-list"></div>
     </section>
 
     <section id="education">
         <h2>Education</h2>
-        <div id="education-list">
-            <p>Bachelor of Computer Science, Cavendish University Uganda, 2020 - Aug</p>
-            <p>Data Manipulation and Formatting in Excel - Kubicle</p>
-            <p>Formulas and Functions in Excel - Kubicle</p>
-            <p>IBM Cybersecurity Practitioner - Certificate - IBM</p>
-            <!-- Add more education entries as needed -->
-        </div>
+        <div id="education-list"></div>
     </section>
 
     <section id="contact">
         <h2>Contact Information</h2>
-        <form action="https://formspree.io/YOUREMAIL" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+        <p>Email: Abdirahman.bcs@gmail.com</p>
+        <p>GitHub: <a href="https://github.com/saturnthehustler">saturnthehustler</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/flyrye">Flyrye</a></p>
+        <p>Twitter: <a href="https://twitter.com/Intelli9Hacker">@Intelli9Hacker</a></p>
     </section>
 
     <footer>
         <p>© 2024 Abdirahman Hassan Abdi. All rights reserved.</p>
     </footer>
 
-    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const skills = [
-                { name: "Python", level: 90 },
-                { name: "HTML & CSS", level: 80 },
-                { name: "Django", level: 85 },
-                // Add more skills as needed
+                "Programming Languages: Python, CSS, HTML5",
+                "Libraries/Frameworks: Pandas, Django, Flask, Tkinter, BeautifulSoup, Scikit-learn, Requests, Seaborn, Matplotlib, Tenacity, Ebooklib, Openpyxl, BeautifulSoup4",
+                "Tools / Platforms: Github, Excel, Kubicle, IBM Cybersecurity Tools"
             ];
 
             const projects = [
                 {
                     title: "Diabetes Prediction Model",
-                    description: "This project uses machine learning to predict diabetes based on health indicators...",
-                    link: "https://github.com/saturnthehustler/Machine-Model-for-Diabetes-Prediction.git",
-                    image: "path/to/project-image.jpg"
+                    description: "This project uses machine learning to predict diabetes based on health indicators such as age, BMI, blood glucose levels, and more. The dataset is preprocessed to handle missing values, encode categorical variables, and normalize numerical features. A logistic regression model is trained and optimized using grid search cross-validation. The model's performance is evaluated using the ROC AUC score and a classification report.",
+                    link: "https://github.com/saturnthehustler/Machine-Model-for-Diabetes-Prediction.git"
                 },
                 {
                     title: "ChapterVerse: Web Scraping & EPUB Conversion",
-                    description: "ChapterVerse is designed to scrape online novels and create EPUB files from their chapters...",
-                    link: "https://github.com/saturnthehustler/chapterverse-scraper.git",
-                    image: "path/to/project-image.jpg"
+                    description: "ChapterVerse is designed to scrape online novels and create EPUB files from their chapters. Provides concurrent scraping capabilities to improve efficiency. Includes error handling with automatic retry logic for transient network errors. Allows adding customizable cover images to the generated EPUB files.",
+                    link: "https://github.com/saturnthehustler/chapterverse-scraper.git"
                 },
-                // Add more projects as needed
+                {
+                    title: "ExcelConvertGUI",
+                    description: "This Python script creates a GUI for converting multiple Excel files into a single Excel file with each file's data on a separate sheet. Features include file validation, error handling, and user feedback. Users can select multiple files, choose the target location, and the script merges the data, providing informative messages throughout the process.",
+                    link: "https://github.com/saturnthehustler/ExcelConvertGUI.git"
+                },
+                {
+                    title: "Dynamic GPA Calculator",
+                    description: "A PyQt5-based application that allows users to add multiple semesters, input grades and credit units for each module in a semester, and calculate both semester and cumulative GPA.",
+                    link: "https://github.com/saturnthehustler/GPA-Calculator.git"
+                }
             ];
 
             const experiences = [
@@ -298,55 +168,49 @@
                     location: "Remote/Uganda",
                     duration: "Feb 2021 - Nov 2023",
                     details: [
-                        "Processed an average of 1,200 customer and account source documents per month...",
-                        "Maintained a 99% accuracy rate in data entry...",
-                        "Successfully identified and resolved 20 data entry errors per week..."
+                        "Processed an average of 1,200 customer and account source documents per month, ensuring data accuracy and completeness.",
+                        "Maintained a 99% accuracy rate in data entry while ensuring all information was kept confidential and secure.",
+                        "Successfully identified and resolved 20 data entry errors per week, contributing to a significant reduction in data inaccuracies and improving overall efficiency."
                     ]
-                },
-                // Add more experiences as needed
+                }
             ];
 
             const education = [
                 "Bachelor of Computer Science, Cavendish University Uganda, 2020 - Aug",
                 "Data Manipulation and Formatting in Excel - Kubicle",
                 "Formulas and Functions in Excel - Kubicle",
-                "IBM Cybersecurity Practitioner - Certificate - IBM",
-                // Add more education entries as needed
+                "IBM Cybersecurity Practitioner - Certificate - IBM"
             ];
 
             const skillsList = document.getElementById('skills-list');
             skills.forEach(skill => {
-                const skillBar = document.createElement('div');
-                skillBar.classList.add('skills-bar');
-                skillBar.innerHTML = `<div style="width: ${skill.level}%;"><span>${skill.name} - ${skill.level}%</span></div>`;
-                skillsList.appendChild(skillBar);
+                const li = document.createElement('li');
+                li.textContent = skill;
+                skillsList.appendChild(li);
             });
 
             const projectList = document.getElementById('project-list');
             projects.forEach(project => {
                 const projectDiv = document.createElement('div');
-                projectDiv.classList.add('project');
-                projectDiv.innerHTML = `
+                projectDiv.innerHTML = 
                     <h3>${project.title}</h3>
-                    <img src="${project.image}" alt="${project.title}">
                     <p>${project.description}</p>
                     <a href="${project.link}">View on GitHub</a>
-                `;
+                ;
                 projectList.appendChild(projectDiv);
             });
 
             const experienceList = document.getElementById('experience-list');
             experiences.forEach(experience => {
                 const experienceDiv = document.createElement('div');
-                experienceDiv.classList.add('experience');
-                experienceDiv.innerHTML = `
+                experienceDiv.innerHTML = 
                     <h3>${experience.title}</h3>
                     <p><strong>Location:</strong> ${experience.location}</p>
                     <p><strong>Duration:</strong> ${experience.duration}</p>
                     <ul>
-                        ${experience.details.map(detail => `<li>${detail}</li>`).join('')}
+                        ${experience.details.map(detail => <li>${detail}</li>).join('')}
                     </ul>
-                `;
+                ;
                 experienceList.appendChild(experienceDiv);
             });
 
@@ -355,15 +219,6 @@
                 const p = document.createElement('p');
                 p.textContent = edu;
                 educationList.appendChild(p);
-            });
-
-            const backToTopButton = document.querySelector('.back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.style.display = 'block';
-                } else {
-                    backToTopButton.style.display = 'none';
-                }
             });
         });
     </script>
