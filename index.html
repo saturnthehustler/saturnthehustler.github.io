@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <title>Abdirahman Hassan Abdi - Portfolio</title>
     <style>
-       
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            scroll-behavior: smooth;
+        }
+
         nav ul {
-            list-style-type: none; /* Removes bullet points from list */
+            list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333; /* Example background color */
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
 
         nav li {
@@ -19,26 +30,26 @@
 
         nav li a {
             display: block;
-            color: white; /* Example text color */
+            color: white;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         nav li a:hover {
-            background-color: #111; /* Example hover color */
+            background-color: #111;
         }
 
-       
-        body {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: grid;
-            place-items: center;
-            height: 100vh;
+        section {
+            padding: 60px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1, h2 {
+            margin-bottom: 0.5em;
         }
 
         button {
@@ -58,91 +69,54 @@
             color: #ffffff;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5em;
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Homepage</a></li>
-                <li><a href="#Projects">Projects/ Open Source</a></li>
-                <li><a href="#contact">Contact Me</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
         <h1>Hello, I'm Abdirahman Hassan Abdi</h1>
         <p>Python Developer/Machine Learning Engineer</p>
-        <!-- Navigation Bar -->
-        
-    </header>
+    </section>
 
-    <section id="introduction">
+    <section id="about">
         <h2>About Me</h2>
         <p>Welcome! I'm Abdirahman Hassan Abdi, a Python Developer and Machine Learning Engineer dedicated to using technology to address complex challenges. With a strong foundation in both technical and analytical skills, I excel in Python, HTML, and CSS programming, and specialize in data preprocessing, feature engineering, and predictive modeling. My professional interests include exploring cutting-edge machine learning techniques, contributing to open source projects, and continuous learning to stay abreast of industry trends.</p>
     </section>
 
     <section id="skills">
         <h2>Skills</h2>
-        <ul>
-            <li>Programming Languages: Python, CSS, HTML5</li>
-            <li>Libraries/Frameworks: Pandas, Django, Flask, Tkinter, BeautifulSoup, Scikit-learn, Requests, Seaborn, Matplotlib, Tenacity, Ebooklib, Openpyxl, BeautifulSoup4</li>
-            <li>Tools / Platforms: Github, Excel, Kubicle, IBM Cybersecurity Tools</li>
-        </ul>
+        <ul id="skills-list"></ul>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-        <div id="diabetes-prediction-model">
-            <h3>Diabetes Prediction Model</h3>
-            <p>Machine Learning Model For Diabetes Prediction | Skills: Python, scikit-learn, pandas, HTML, CSS, seaborn, matplotlib, Flask</p>
-            <p>This project uses machine learning to predict diabetes based on health indicators such as age, BMI, blood glucose levels, and more. 
-            <p>The dataset is preprocessed to handle missing values, encode categorical variables, and normalize numerical features.</p> 
-            <p>A logistic regression model is trained and optimized using grid search cross-validation.</p>
-            <p>The model's performance is evaluated using the ROC AUC score and a classification report.</p>
-            <a href="https://github.com/saturnthehustler/Machine-Model-for-Diabetes-Prediction.git">View on GitHub</a>
-        </div>
-        <div id="web-scraping-epub">
-            <h3>ChapterVerse: Web Scraping & EPUB Conversion</h3>
-            <p>Skills: Python, Requests, BeautifulSoup4, ebooklib, Tenacity, concurrent.futures</p>
-            <p>ChapterVerse is designed to scrape online novels and create EPUB files from their chapters. Provides concurrent scraping capabilities to improve efficiency. Includes error handling with automatic retry logic for transient network errors. Allows adding customizable cover images to the generated EPUB files.</p>
-            <a href="https://github.com/saturnthehustler/chapterverse-scraper.git">View on GitHub</a>
-        </div>
-        <div id="excel-converter">
-            <h3>ExcelConvertGUI</h3>
-            <p>Skills: Python, Tkinter, pandas, openpyxl</p>
-            <p>This Python script creates a GUI for converting multiple Excel files into a single Excel file with each file's data on a separate sheet. Features include file validation, error handling, and user feedback. Users can select multiple files, choose the target location, and the script merges the data, providing informative messages throughout the process.</p>
-            <a href="https://github.com/saturnthehustler/ExcelConvertGUI.git">View on GitHub</a>
-        </div>
+        <div id="project-list"></div>
     </section>
-
 
     <section id="experience">
         <h2>Experience</h2>
-        <p>I am currently seeking opportunities to apply my skills and contribute to innovative projects.</p>
-        <div>
-            <h3>Taaj Services | Data Entry Specialist</h3>
-            <p><strong>Location:</strong> Remote/Uganda</p>
-            <p><strong>Duration:</strong> Feb 2021 - Nov 2023</p>
-            <ul>
-                <li>Processed an average of 1,200 customer and account source documents per month, ensuring data accuracy and completeness.</li>
-                <li>Maintained a 99% accuracy rate in data entry while ensuring all information was kept confidential and secure.</li>
-                <li>Successfully identified and resolved 20 data entry errors per week, contributing to a significant reduction in data inaccuracies and improving overall efficiency.</li>
-            </ul>
-        </div>
+        <div id="experience-list"></div>
     </section>
 
     <section id="education">
         <h2>Education</h2>
-        <p>Bachelor of Computer Science, Cavendish University Uganda, 2020 - Aug</p>
-        <h3>Certifications</h3>
-        <ul>
-            <li>Data Manipulation and Formatting in Excel - Kubicle</li>
-            <li>Formulas and Functions in Excel - Kubicle</li>
-            <li>IBM Cybersecurity Practitioner - Certificate - IBM</li>
-        </ul>
+        <div id="education-list"></div>
     </section>
 
     <section id="contact">
@@ -158,23 +132,89 @@
     </footer>
 
     <script>
-        // JavaScript to add complex design elements
-        window.onload = function() {
-            const navLinks = document.querySelectorAll('nav li a');
-            const buttons = document.querySelectorAll('button');
+        document.addEventListener('DOMContentLoaded', function() {
+            const skills = [
+                "Programming Languages: Python, CSS, HTML5",
+                "Libraries/Frameworks: Pandas, Django, Flask, Tkinter, BeautifulSoup, Scikit-learn, Requests, Seaborn, Matplotlib, Tenacity, Ebooklib, Openpyxl, BeautifulSoup4",
+                "Tools / Platforms: Github, Excel, Kubicle, IBM Cybersecurity Tools"
+            ];
 
-            navLinks.forEach(link => {
-                link.style.transition = 'transform 0.5s';
-                link.onmouseover = () => link.style.transform = 'scale(1.1)';
-                link.onmouseout = () => link.style.transform = 'scale(1)';
+            const projects = [
+                {
+                    title: "Diabetes Prediction Model",
+                    description: "Machine Learning Model For Diabetes Prediction | Skills: Python, scikit-learn, pandas, HTML, CSS, seaborn, matplotlib, Flask", 
+                
+                    link: "https://github.com/saturnthehustler/Machine-Model-for-Diabetes-Prediction.git"
+                },
+                {
+                    title: "ChapterVerse: Web Scraping & EPUB Conversion",
+                    description: "Skills: Python, Requests, BeautifulSoup4, ebooklib, Tenacity, concurrent.futures",
+                    link: "https://github.com/saturnthehustler/chapterverse-scraper.git"
+                },
+                {
+                    title: "ExcelConvertGUI",
+                    description: "Skills: Python, Tkinter, pandas, openpyxl",
+                    link: "https://github.com/saturnthehustler/ExcelConvertGUI.git"
+                }
+            ];
+
+            const experiences = [
+                {
+                    title: "Taaj Services | Data Entry Specialist",
+                    location: "Remote/Uganda",
+                    duration: "Feb 2021 - Nov 2023",
+                    details: [
+                        "Processed an average of 1,200 customer and account source documents per month, ensuring data accuracy and completeness.",
+                        "Maintained a 99% accuracy rate in data entry while ensuring all information was kept confidential and secure.",
+                        "Successfully identified and resolved 20 data entry errors per week, contributing to a significant reduction in data inaccuracies and improving overall efficiency."
+                    ]
+                }
+            ];
+
+            const education = [
+                "Bachelor of Computer Science, Cavendish University Uganda, 2020 - Aug",
+                "Certifications: Data Manipulation and Formatting in Excel - Kubicle, Formulas and Functions in Excel - Kubicle, IBM Cybersecurity Practitioner - Certificate - IBM"
+            ];
+
+            const skillsList = document.getElementById('skills-list');
+            skills.forEach(skill => {
+                const li = document.createElement('li');
+                li.textContent = skill;
+                skillsList.appendChild(li);
             });
 
-            buttons.forEach(button => {
-                button.style.transition = 'transform 0.5s';
-                button.onmouseover = () => button.style.transform = 'scale(1.1)';
-                button.onmouseout = () => button.style.transform = 'scale(1)';
+            const projectList = document.getElementById('project-list');
+            projects.forEach(project => {
+                const projectDiv = document.createElement('div');
+                projectDiv.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <a href="${project.link}">View on GitHub</a>
+                `;
+                projectList.appendChild(projectDiv);
             });
-        };
+
+            const experienceList = document.getElementById('experience-list');
+            experiences.forEach(experience => {
+                const experienceDiv = document.createElement('div');
+                experienceDiv.innerHTML = `
+                    <h3>${experience.title}</h3>
+                    <p><strong>Location:</strong> ${experience.location}</p>
+                    <p><strong>Duration:</strong> ${experience.duration}</p>
+                    <ul>
+                        ${experience.details.map(detail => `<li>${detail}</li>`).join('')}
+                    </ul>
+                `;
+                experienceList.appendChild(experienceDiv);
+            });
+
+            const educationList = document.getElementById('education-list');
+            education.forEach(edu => {
+                const p = document.createElement('p');
+                p.textContent = edu;
+                educationList.appendChild(p);
+            });
+        });
     </script>
 </body>
 </html>
