@@ -14,6 +14,24 @@
             scroll-behavior: smooth;
             transition: background-color 0.3s, color 0.3s;
         }
+        .about-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Change to column for better layout on smaller screens */
+    text-align: center; /* Center align text for better appearance */
+    margin-bottom: 20px; /* Add some space at the bottom */
+        }
+
+        .about-text {
+    max-width: 600px; /* Adjust the max-width as needed */
+        }
+
+        .about-container img {
+    width: 200px; /* Maintain existing width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Keep the rounded look */
+    margin-bottom: 20px; /* Space between image and text */}
+
         .headshot {
     width: 200px; /* Adjust the width as needed */
     height: auto; /* Maintain the aspect ratio */
@@ -103,9 +121,15 @@
     </section>
 
    <section id="about">
-    <img src="Assets/DSC_0048.jpg" alt="Abdirahman" class="headshot">
     <h2>About Me</h2>
-    <p>Welcome! I'm Abdirahman Hassan Abdi, a Python Developer and Machine Learning Engineer dedicated to using technology to address complex challenges. With a strong foundation in both technical and analytical skills, I excel in Python, HTML, and CSS programming, and specialize in data preprocessing, feature engineering, and predictive modeling. My professional interests include exploring cutting-edge machine learning techniques, contributing to open source projects, and continuous learning to stay abreast of industry trends.</p>
+    <div class="about-container">
+        <img src="Assets/DSC_0048.jpg" alt="Abdirahman" class="headshot">
+        <div class="about-text">
+            <p>Hi there, I'm Abdirahman Hassan Abdi, and I'm thrilled to have you on my portfolio page.</p>
+            <p>I am a Python Developer and Machine Learning Engineer dedicated to using technology to address complex challenges. With a strong foundation in both technical and analytical skills, I excel in Python, HTML, and CSS programming, and specialize in data preprocessing, feature engineering, and predictive modeling.</p>
+            <p>My professional interests include exploring cutting-edge machine learning techniques, contributing to open source projects, and continuous learning to stay abreast of industry trends.</p>
+        </div>
+    </div>
 </section>
     <section id="skills">
         <h2>Skills</h2>
