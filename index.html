@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this line -->
     <title>Abdirahman Hassan Abdi - Portfolio</title>
     <style>
         body, html {
@@ -384,17 +385,23 @@
             margin-bottom: 10px;
         }
 
-        #skills-list {
+        #skills {
+            padding: 60px 20px;
+        }
+
+        .skills-container {
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
         }
 
         .skill-category {
-            flex: 1;
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             padding: 20px;
+            flex: 1;
+            min-width: 300px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -403,75 +410,41 @@
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
         }
 
-        .skill-category ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .skill-category li {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 120px;
+        .skill-category h3 {
+            color: gold;
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        .skill-icon {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category li:hover .skill-icon {
-            transform: scale(1.1);
-        }
-
-        .skill-category span {
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-
-        .skill-category.programming-languages {
-            padding: 30px;
-        }
-
-        .skill-category.programming-languages ul {
+        .skill-cards {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
         }
 
-        .skill-category.programming-languages li {
+        .skill-card {
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100px;
             text-align: center;
-            width: 120px;
         }
 
         .skill-icon {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
             margin-bottom: 10px;
             transition: transform 0.3s ease;
         }
 
-        .skill-category.programming-languages li:hover .skill-icon {
+        .skill-card:hover .skill-icon {
             transform: scale(1.1);
         }
 
-        .skill-category.programming-languages span {
-            font-size: 1.1em;
-            font-weight: bold;
+        .skill-card span {
+            font-size: 0.9em;
         }
 
         @keyframes slide-in {
@@ -490,108 +463,122 @@
         }
 
         #skills {
-            background-image: url('Assets/skills.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
+        background-image: url('Assets/skills.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
 
-        #skills::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-        }
+    #skills::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
 
-        #skills h2,
-        #skills-list {
-            position: relative;
-            z-index: 2;
-        }
+    #skills h2,
+    #skills-list {
+        position: relative;
+        z-index: 2;
+    }
 
-        #skills.visible {
-            opacity: 1;
-        }
+    #skills.visible {
+        opacity: 1;
+    }
 
-        .skill-category {
-            flex: 1;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    #skills-list {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-        }
+    .skill-category {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .skill-item {
-            margin-bottom: 15px;
-        }
+    .skill-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    }
 
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
+    .skill-category ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        list-style-type: none;
+        padding-left: 0;
+    }
 
-        .skill-bar {
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-        }
+    .skill-category li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 120px;
+        margin-bottom: 20px;
+    }
 
-        .skill-progress {
-            width: 0;
-            height: 100%;
-            background-color: #2575fc;
-            transition: width 1s ease-in-out;
-        }
+    .skill-icon {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+    }
 
-        .skill-category.programming-languages {
-            padding: 30px;
-        }
+    .skill-category li:hover .skill-icon {
+        transform: scale(1.1);
+    }
 
-        .skill-category.programming-languages ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
+    .skill-category span {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
 
-        .skill-category.programming-languages li {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 120px;
-        }
+    .skill-category.programming-languages {
+        padding: 30px;
+    }
 
-        .skill-icon {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
+    .skill-category.programming-languages ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
 
-        .skill-category.programming-languages li:hover .skill-icon {
-            transform: scale(1.1);
-        }
+    .skill-category.programming-languages li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 120px;
+    }
 
-        .skill-category.programming-languages span {
-            font-size: 1.1em;
-            font-weight: bold;
-        }
+    .skill-category.programming-languages li:hover .skill-icon {
+        transform: scale(1.1);
+    }
+
+    .skill-category.programming-languages span {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .skill-icon:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
 
         #projects {
             padding: 60px 20px;
@@ -732,6 +719,49 @@
             position: relative;
             z-index: 2;
         }
+
+        .fa-rotate-90 {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+
+        .fa-rotate-180 {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .fa-rotate-270 {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+            -webkit-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            transform: rotate(270deg);
+        }
+
+        .fa-flip-horizontal {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+            -webkit-transform: scaleX(-1);
+            -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        .fa-flip-vertical {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+            -webkit-transform: scaleY(-1);
+            -ms-transform: scaleY(-1);
+            transform: scaleY(-1);
+        }
+
+        .fa-flip-both,
+        .fa-flip-horizontal.fa-flip-vertical,
+        .fa-flip-vertical {
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+        }
+
+        
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -782,13 +812,15 @@
             <li>IBM Cybersecurity Practitioner - Certificate - IBM</li>
         </ul>
     </div>
-</section>
+    </section>
     <section id="skills">
         <h2>Skills</h2>
         <div id="skills-list"></div>
     </section>
+
     <section id="projects">
         <h2>Projects</h2>
+        <div id="project-list"></div>
         <div class="project-grid">
             <div class="project-card">
                 <h3>Machine Learning Model For Diabetes Prediction</h3>
@@ -899,7 +931,13 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsList = document.getElementById('skills-list');
+            if (!skillsList) {
+                console.error('Skills list element not found');
+                return; // Exit if the element is not found
+            }
+
             const skills = [
                 { 
                     category: "Programming Languages", 
@@ -935,6 +973,27 @@
                     ]
                 }
             ];
+    
+            skills.forEach(skillCategory => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'project-card'; 
+                categoryDiv.innerHTML = `
+                    <h3>${skillCategory.category}</h3>
+                    <img src="${skillCategory.items[0].image}" alt="${skillCategory.category}" class="thumbnail">
+                    <div class="tags">
+                        ${skillCategory.items.map(item => `
+                            <span class="tag">${item.name}</span>
+                        `).join('')}
+                    </div>
+                `;
+                skillsList.appendChild(categoryDiv);
+            });
+
+            const projectList = document.getElementById('project-list');
+            if (!projectList) {
+                console.error('Project list element not found');
+                return; 
+            }
 
             const projects = [
                 {
@@ -968,11 +1027,28 @@
                 {
                     title: "Interactive Portfolio Website",
                     description: "Developed a dynamic and visually appealing portfolio website using HTML, CSS, and JavaScript to showcase professional skills, projects, and experiences effectively.",
-                    image: "Assets/portfolio-website.jpeg",
+                    image: "Assets/portfolio-website.jpg",
                     tags: ["Web Development", "HTML", "CSS", "JavaScript"],
                     link: "https://github.com/saturnthehustler/saturnthehustler.github.io"
                 }
             ];
+
+            projects.forEach(project => {
+                const projectDiv = document.createElement('div');
+                projectDiv.className = 'project-card';
+                projectDiv.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <img src="${project.image}" alt="${project.title}" class="thumbnail">
+                    <p class="description">${project.description}</p>
+                    <div class="tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <a href="${project.link}" target="_blank" class="link">
+                        <i class="fas fa-external-link-alt"></i> View on GitHub
+                    </a>
+                `;
+                projectList.appendChild(projectDiv); // Append to the project list
+            });
 
             const experiences = [
                 {
@@ -1000,56 +1076,7 @@
                 }
             ];
 
-            const skillsList = document.getElementById('skills-list');
-            skills.forEach(skillCategory => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'skill-category';
-                if (skillCategory.category === "Programming Languages" || skillCategory.category === "Libraries/Frameworks") {
-                    categoryDiv.classList.add('programming-languages');
-                    categoryDiv.innerHTML = `
-                        <h3>${skillCategory.category}</h3>
-                        <ul>
-                            ${skillCategory.items.map(item => `
-                                <li>
-                                    <img src="${item.image}" alt="${item.name}" class="skill-icon">
-                                    <span>${item.name}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    `;
-                } else {
-                    categoryDiv.innerHTML = `
-                        <h3>${skillCategory.category}</h3>
-                        <ul>
-                            ${skillCategory.items.map(item => `
-                                <li>
-                                    <img src="${item.image}" alt="${item.name}" class="skill-icon">
-                                    <span>${item.name}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    `;
-                }
-                skillsList.appendChild(categoryDiv);
-            });
-
-            const projectList = document.getElementById('project-list');
-            projects.forEach(project => {
-                const projectDiv = document.createElement('div');
-                projectDiv.className = 'project-card';
-                projectDiv.innerHTML = `
-                    <h3>${project.title}</h3>
-                    <img src="${project.image}" alt="${project.title}" class="thumbnail">
-                    <p class="description">${project.description}</p>
-                    <div class="tags">
-                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                    <a href="${project.link}" target="_blank" class="link">
-                        <i class="fas fa-external-link-alt"></i> View on GitHub
-                    </a>
-                `;
-                projectList.appendChild(projectDiv);
-            });
+            
 
             const experienceGrid = document.querySelector('.experience-grid');
             experiences.forEach(experience => {
@@ -1109,4 +1136,3 @@
         });
     </script>
 </body>
-</html>
