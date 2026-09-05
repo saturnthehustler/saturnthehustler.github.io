@@ -152,3 +152,48 @@ html.js .figure [data-seq="5"] { --seq-delay: 480ms; }
   html.js .figure [data-seq] { opacity: 1; }
   html.js .figure[data-in="true"] [data-seq] { transition: none; }
 }
+
+/* ============================================================
+   Layout and components
+   ============================================================ */
+
+.site-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.site-head nav { display: flex; align-items: center; gap: 1rem; }
+.site-name { font-weight: 700; color: var(--ink); text-decoration: none; }
+.theme-toggle { background: none; border: 1px solid var(--rule); color: var(--ink); border-radius: 2px; padding: .5rem .75rem; min-height: 44px; cursor: pointer; font: inherit; }
+
+.hero { padding: clamp(3rem, 9vw, 6rem) 0; display: flex; flex-direction: column; gap: 1.25rem; }
+.kicker { font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.hero h1 { font-size: var(--step-4); margin: 0; max-width: 17ch; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.lede { font-size: var(--step-1); color: var(--dim); margin: 0; }
+.hero-link { margin: 0; }
+
+.section-label { font-family: var(--font-body), system-ui, sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); margin: 0 0 1rem; }
+section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
+
+.work-list { list-style: none; margin: 0; padding: 0; }
+.entry { display: grid; grid-template-columns: 5rem minmax(0, 1fr) 2rem; gap: 1.25rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+.entry-year { font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--dim); font-variant-numeric: tabular-nums; }
+.entry h3 { font-size: var(--step-2); margin: 0 0 .4rem; }
+.entry h3 a { text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--accent); }
+.entry p { color: var(--dim); margin: 0; font-size: .95rem; }
+.entry-go { color: var(--accent); transition: transform 160ms ease; }
+
+/* Touch fires a false hover on tap, so gate motion to real pointers. */
+@media (hover: hover) and (pointer: fine) {
+  .entry:hover .entry-go { transform: translateX(4px); }
+}
+
+.contact { display: flex; flex-direction: column; gap: .5rem; max-width: 34rem; }
+.contact label { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); margin-top: .5rem; }
+.contact input, .contact select, .contact textarea { font: inherit; padding: .7rem .8rem; min-height: 44px; background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 2px; }
+.btn { align-self: flex-start; margin-top: 1rem; background: var(--accent); color: var(--ground); text-decoration: none; font-weight: 700; padding: .8rem 1.4rem; border-radius: 2px; min-height: 44px; display: inline-flex; align-items: center; }
+.contact-alt, .contact-lede { color: var(--dim); font-size: .9rem; }
+
+.site-foot { border-top: 1px solid var(--rule); margin-top: 4rem; padding: 1.5rem 0; color: var(--dim); font-size: .85rem; }
+
+@media (max-width: 640px) {
+  .entry { grid-template-columns: 1fr; gap: .35rem; }
+  .entry-go { display: none; }
+}
