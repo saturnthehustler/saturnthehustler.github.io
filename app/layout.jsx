@@ -27,7 +27,9 @@ const PRE_PAINT = `(function(){try{var d=document.documentElement;d.classList.ad
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    // The pre-paint script below adds html.js and stamps data-theme before
+    // React hydrates, so server and client markup differ here by design.
+    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: PRE_PAINT }} />
       </head>
