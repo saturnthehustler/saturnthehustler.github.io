@@ -75,7 +75,16 @@ a { color: var(--accent); }
   outline-offset: 3px;
 }
 
-.wrap { width: min(72rem, 100% - 2.5rem); margin-inline: auto; }
+.wrap {
+  width: min(72rem, 100% - 2.5rem);
+  margin-inline: auto;
+  /* A figure's own overflow-x:auto container holds its wide diagram, but
+     Chromium still adds that content to the root's scrollable width, so the
+     page could be dragged sideways into empty space on a phone. `clip`
+     stops that without creating a scroll container, which `hidden` would —
+     so sticky positioning and scrollIntoView keep working. */
+  overflow-x: clip;
+}
 
 /* ============================================================
    Motion
@@ -230,3 +239,4 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
 
 .earlier-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); }
 .earlier-item h2 { font-size: var(--step-2); margin: 0 0 .6rem; }
+.disclosure { max-width: 46ch; margin-top: .5rem; font-size: .8rem; opacity: .85; }

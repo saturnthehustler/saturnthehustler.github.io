@@ -1,4 +1,5 @@
 import { Instrument_Serif, Public_Sans } from 'next/font/google';
+import Analytics from '@/components/Analytics';
 import ThemeToggle from '@/components/ThemeToggle';
 import './globals.css';
 
@@ -42,7 +43,12 @@ export default function RootLayout({ children }) {
         <main id="main">{children}</main>
         <footer className="site-foot wrap">
           <p>© 2026 Abdirahman Hassan Abdi</p>
+          <p className="disclosure">
+            This site uses Cloudflare Web Analytics, which counts visits without cookies and
+            without tracking anyone between sites.
+          </p>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
