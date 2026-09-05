@@ -1,6 +1,7 @@
 import Figure from '@/components/Figure';
 import WeightedCost from '@/components/figures/WeightedCost';
 import DocumentFlow from '@/components/figures/DocumentFlow';
+import ShareSplit from '@/components/figures/ShareSplit';
 import YearClose from '@/components/figures/YearClose';
 import RoleMatrix from '@/components/figures/RoleMatrix';
 
@@ -81,20 +82,33 @@ export default function Page() {
 
       <h2>Closing a year is a one-way door</h2>
       <p>
-        At year end the profit is split: half to the partner running the business day to day, half
-        among the investors &mdash; weighted by how many days each one&rsquo;s capital was actually
-        held, not by a percentage agreed in advance. Money put in halfway through the year earns
-        half a year&rsquo;s share.
-      </p>
-      <p>
-        Once closed, those percentages freeze permanently and a late expense cannot reach back and
-        change them. Reopening is possible only while no later year has been closed and the money
-        the close moved into people&rsquo;s capital is still there &mdash; checked by amount rather
-        than by date, because withdrawals can be back-dated.
+        Closing a financial year works out what each shareholder is owed, writes it to their
+        capital, and freezes it. The example below divides the year&rsquo;s result equally between
+        three shareholders; the real arrangement is configurable, and the commercial terms any
+        particular business runs on are theirs rather than mine to publish.
       </p>
       <Figure
         title="Figure 6"
-        caption="Net profit dividing in half, the investor half subdividing by days held. Percentages are illustrative, and they freeze the moment the year closes."
+        caption="An equal three-way split, shown as an example — the numbers and the arrangement are invented, not any client's. What the system guarantees is that the settlement lands in capital and stops being editable."
+      >
+        <ShareSplit />
+      </Figure>
+
+      <p>
+        The harder half is what happens afterwards. Once the year is closed, nothing later can
+        quietly change it: a back-dated expense cannot reach into a closed year and move a balance
+        somebody has already been paid on.
+      </p>
+      <p>
+        Reopening is deliberately not a permission. It is allowed only while two conditions still
+        hold: no later year has been closed, and the money the close moved into people&rsquo;s
+        capital is still there &mdash; checked by amount rather than by date, because withdrawals can
+        be back-dated. When either fails, the year stays shut and the correction has to be made
+        forward, where it is visible.
+      </p>
+      <Figure
+        title="Figure 7"
+        caption="Closing is one-way, and reopening is a gate rather than a right. Making the second condition an amount check rather than a date check is what stops a back-dated withdrawal from unlocking a settled year."
       >
         <YearClose />
       </Figure>
@@ -112,7 +126,7 @@ export default function Page() {
         and SameSite, and forms refuse cross-site posts twice over.
       </p>
       <Figure
-        title="Figure 7"
+        title="Figure 8"
         caption="What each role can reach. The same matrix is enforced on the server, not merely reflected in the navigation."
       >
         <RoleMatrix />

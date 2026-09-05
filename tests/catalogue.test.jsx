@@ -23,8 +23,11 @@ describe('Catalogue case study', () => {
     expect(screen.getAllByRole('figure')).toHaveLength(3);
   });
 
-  it('never links the private repository', () => {
+  // Naming the private repo here to assert its absence would write it into a
+  // public repository. scripts/check-privacy.mjs owns that list and scans the
+  // built output, which is the surface that actually matters.
+  it('links no repository at all, because both are private', () => {
     const { container } = render(<Page />);
-    expect(container.innerHTML).not.toContain('github.com/saturnthehustler/somstar-website');
+    expect(container.querySelector('a[href*="github.com"]')).toBeNull();
   });
 });

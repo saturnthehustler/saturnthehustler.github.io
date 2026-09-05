@@ -5,9 +5,14 @@ import Page from '@/app/work/somstar-system/page';
 vi.mock('motion/react', () => ({ useInView: () => true, useReducedMotion: () => false }));
 
 describe('Business system case study', () => {
-  it('renders four figures', () => {
+  it('renders five figures', () => {
     render(<Page />);
-    expect(screen.getAllByRole('figure')).toHaveLength(4);
+    expect(screen.getAllByRole('figure')).toHaveLength(5);
+  });
+
+  it('marks the shareholding example as invented rather than a real arrangement', () => {
+    const { container } = render(<Page />);
+    expect(container.textContent).toMatch(/invented, not any client/i);
   });
 
   it('names the admin host in prose but never links it', () => {
@@ -16,10 +21,12 @@ describe('Business system case study', () => {
     expect(container.querySelector('a[href*="inventory.somstarkitchen.com"]')).toBeNull();
   });
 
-  it('publishes no real client figures', () => {
+  // Asserting the absence of a specific figure here would mean writing that
+  // figure into a public repository, which is the thing being prevented.
+  // scripts/check-privacy.mjs owns that list; it exempts only itself.
+  it('describes the year close without its commercial terms', () => {
     const { container } = render(<Page />);
-    expect(container.textContent).not.toContain('61,641');
-    expect(container.textContent).not.toContain('61641');
+    expect(container.textContent).toMatch(/commercial terms .*theirs rather than mine/i);
   });
 
   it('presents the role matrix as a table', () => {

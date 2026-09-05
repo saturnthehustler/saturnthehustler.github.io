@@ -1,57 +1,44 @@
-// Claim: net profit halves, and the investor half subdivides by how
-// many days each investor's capital was actually held.
+// Claim: closing a financial year is one-way. Later entries cannot reach
+// back into it, and reopening is gated on two conditions rather than a
+// permission. Deliberately says nothing about how profit is divided.
 export default function YearClose() {
-  const investors = [
-    { name: 'Investor A', days: 365, share: '50%' },
-    { name: 'Investor B', days: 210, share: '29%' },
-    { name: 'Investor C', days: 150, share: '21%' },
-  ];
-
   return (
     <svg
-      viewBox="0 0 640 204"
+      viewBox="0 0 640 202"
       role="img"
-      aria-label="Net profit splitting evenly between the operating partner and the investors, with the investor half subdivided by days of capital held"
+      aria-label="An open financial year closing one way, with later entries unable to reach back and reopening gated on two conditions"
     >
       <g data-seq="1">
-        <rect x="0" y="16" width="176" height="48" rx="2" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-        <text x="16" y="39" fill="var(--accent)" fontWeight="700">Net profit</text>
-        <text x="16" y="56" fill="currentColor" opacity=".6">15 March &ndash; 14 March</text>
+        <rect x="0" y="62" width="146" height="52" rx="2" fill="none" stroke="currentColor" opacity=".55" />
+        <text x="16" y="86" fill="currentColor" fontWeight="700">Year open</text>
+        <text x="16" y="103" fill="currentColor" opacity=".6">entries still land</text>
       </g>
 
       <g data-seq="2">
-        <path d="M180 40 L216 40 L216 86" fill="none" stroke="currentColor" opacity=".45" strokeWidth="1.5" />
-        <line x1="216" y1="86" x2="240" y2="86" stroke="currentColor" opacity=".45" strokeWidth="1.5"
-              markerEnd="url(#yc-arrow-dim)" />
-        <rect x="248" y="62" width="164" height="48" rx="2" fill="none" stroke="currentColor" opacity=".55" />
-        <text x="264" y="85" fill="currentColor" fontWeight="700">50% operating partner</text>
-        <text x="264" y="102" fill="currentColor" opacity=".6">for running the business</text>
+        <line x1="150" y1="88" x2="204" y2="88" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#yc-arrow)" />
+        <text x="177" y="80" textAnchor="middle" fill="var(--accent)">close</text>
+        <rect x="212" y="62" width="170" height="52" rx="2" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
+        <text x="228" y="86" fill="var(--accent)" fontWeight="700">Year closed</text>
+        <text x="228" y="103" fill="currentColor" opacity=".6">balances frozen</text>
       </g>
 
       <g data-seq="3">
-        <path d="M216 86 L216 144" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-        <line x1="216" y1="144" x2="240" y2="144" stroke="var(--accent)" strokeWidth="1.5"
-              markerEnd="url(#yc-arrow)" />
-        <rect x="248" y="120" width="164" height="48" rx="2" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-        <text x="264" y="143" fill="var(--accent)" fontWeight="700">50% investors</text>
-        <text x="264" y="160" fill="currentColor" opacity=".6">weighted by days held</text>
+        <rect x="212" y="152" width="170" height="42" rx="2" fill="none" stroke="currentColor" opacity=".45" />
+        <text x="228" y="178" fill="currentColor" opacity=".6">A late expense</text>
+        <line x1="297" y1="148" x2="297" y2="124" stroke="currentColor" opacity=".45" strokeWidth="1.5" />
+        <path d="M290 141 L304 131 M290 131 L304 141" stroke="currentColor" opacity=".7" strokeWidth="1.5" />
+        <text x="316" y="140" fill="currentColor" opacity=".6">cannot reach back</text>
       </g>
 
       <g data-seq="4">
-        {investors.map((inv, i) => {
-          const y = 18 + i * 58;
-          return (
-            <g key={inv.name}>
-              <path d={`M416 144 C 444 144, 448 ${y + 21}, 470 ${y + 21}`}
-                    fill="none" stroke="currentColor" opacity=".35" strokeWidth="1" />
-              <rect x="474" y={y} width="162" height="42" rx="2" fill="none" stroke="currentColor" opacity=".5" />
-              <text x="488" y={y + 19} fill="currentColor">{inv.name}</text>
-              <text x="488" y={y + 34} fill="currentColor" opacity=".6">
-                {inv.days} days &rarr; {inv.share}
-              </text>
-            </g>
-          );
-        })}
+        <line x1="386" y1="88" x2="424" y2="88" stroke="currentColor" opacity=".45" strokeWidth="1.5"
+              strokeDasharray="4 4" markerEnd="url(#yc-arrow-dim)" />
+        <text x="405" y="80" textAnchor="middle" fill="currentColor" opacity=".6">reopen</text>
+        <rect x="432" y="42" width="204" height="92" rx="2" fill="none" stroke="currentColor" opacity=".4" />
+        <text x="446" y="64" fill="currentColor" opacity=".65">only while both hold</text>
+        <text x="446" y="88" fill="currentColor">1. no later year closed</text>
+        <text x="446" y="110" fill="currentColor">2. the moved capital is</text>
+        <text x="460" y="126" fill="currentColor">still there, by amount</text>
       </g>
 
       <defs>

@@ -150,12 +150,14 @@ dollars only.
    recording what changed, the resulting balance, why, on which document, and by
    whom. Each invoice line freezes that day's product name, code, model and cost,
    so later edits cannot rewrite history. → *Figure 5: document and stock flow.*
-3. **Closing a year is a one-way door.** Net profit splits half to the operating
-   partner and half among investors, weighted by how many days each one's capital
-   was actually held. Percentages freeze permanently. A closed year can be
-   reopened only while no later year has been closed and the money the close
-   moved into capital is still there — checked by amount, because withdrawals can
-   be back-dated. → *Figure 6: the year-close split.*
+3. **Closing a year is a one-way door.** Closing settles and freezes every
+   shareholder balance. **The commercial terms of that settlement are the
+   client's and must not be described anywhere on the site or in this repo.**
+   What may be published is the immutability: a back-dated entry cannot reach
+   into a closed year, and reopening is gated on two conditions — no later year
+   closed, and the moved capital still present, checked by amount rather than
+   date because withdrawals can be back-dated.
+   → *Figure 6: the close-and-reopen gate.*
 4. **Three roles, checked twice.** Owner, Manager and Staff. Hidden pages are
    hidden, and the server re-checks permission on every request and every save.
    → *Figure 7: role matrix.*
@@ -210,8 +212,9 @@ tabular data and is marked up as an HTML `<table>`. No diagramming library.
    5 units held at $1,520, with the arithmetic visible.
 5. **Document and stock flow** — quotation (no stock movement) and invoice (stock
    down, audit row written) as two paths from one product line.
-6. **Year-close split** — net profit dividing 50/50, the investor half
-   subdividing by days-held weighting.
+6. **Close-and-reopen gate** — an open year closing one way, a later entry
+   unable to reach back, and reopening held behind its two conditions. Carries
+   no commercial terms.
 7. **Role matrix** — Owner / Manager / Staff against capability rows.
 
 ## Technical approach
@@ -263,8 +266,8 @@ input.
   per section.
 - **Figures assemble on entry.** The signature moment. Each diagram's elements
   reveal in the order the mechanism runs — the image pipeline builds
-  left to right, source photo through to fingerprinted URL; the year-close split
-  divides, then subdivides. The animation *is* the explanation, which is the only
+  left to right, source photo through to fingerprinted URL; the close-and-reopen
+  gate resolves in the order the check runs. The animation *is* the explanation, which is the only
   reason it belongs on a page this restrained.
 - **Work-list entries** reveal on scroll with `whileInView` and
   `viewport={{ once: true }}`.
@@ -417,6 +420,10 @@ work, not their internals, so the following still stay off the site:
   system's address but is not linked, and no login screen is shown.
 - No real customer names, invoice numbers, balances, or the acceptance figures
   from the test suite.
+- **No partnership or profit-sharing terms.** SOMSTAR consented to being named
+  as a client, not to having their commercial arrangements described. This
+  covers the site, this repository's documents, and commit messages — the repo
+  is public, so a scrubbed page and an unscrubbed spec leak equally.
 
 `https://somstarkitchen.com` is the opposite case: it is public, it is the
 strongest single piece of evidence on the site, and prospective clients should

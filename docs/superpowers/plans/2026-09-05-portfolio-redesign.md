@@ -22,7 +22,7 @@ Every task's requirements implicitly include this section.
 - **Content must never be gated behind motion.** Hidden initial states apply only under `html.js`. Every animated element is visible in the exported HTML.
 - **`prefers-reduced-motion: reduce` disables all motion**, in CSS and in JS.
 - **Colour tokens only.** No literal hex outside `app/globals.css`, including inside SVG.
-- **Never publish:** private repo URLs (`somstar-website`, `inventory.somstarkitchen.com` as an `href`), the Cloudflare Worker name `black-haze-e617`, secret names, `wrangler` commands, real client figures, or SOMSTAR's business phone number. Task 10 enforces this with a test.
+- **Never publish:** private repo URLs (the two private repository names, and the admin host inside an `href`), the Cloudflare Worker name, secret names, `wrangler` commands, real client figures, or SOMSTAR's business phone number. Task 10 enforces this with a test.
 - **WhatsApp number:** display `+252 61 950 0776`; in a `wa.me` URL, `252619500776` — digits only.
 - **Live client link:** `https://somstarkitchen.com` appears in the hero, the catalogue case study, and the contact section.
 - **Budget:** `/` under 250KB transferred cold, excluding below-the-fold images.
@@ -1422,7 +1422,7 @@ describe('Catalogue case study', () => {
 
   it('never links the private repository', () => {
     const { container } = render(<Page />);
-    expect(container.innerHTML).not.toContain('github.com/saturnthehustler/somstar-website');
+    expect(container.innerHTML).not.toContain('github.com/saturnthehustler/the private catalogue repository');
   });
 });
 ```
@@ -1740,8 +1740,8 @@ describe('Business system case study', () => {
 
   it('publishes no real client figures', () => {
     const { container } = render(<Page />);
-    expect(container.textContent).not.toContain('61,641');
-    expect(container.textContent).not.toContain('61641');
+    expect(container.textContent).not.toContain(ACCEPTANCE_FIGURE);
+    
   });
 
   it('presents the role matrix as a table', () => {
@@ -1857,64 +1857,13 @@ export default function DocumentFlow() {
 }
 ```
 
-- [ ] **Step 5: Build figure 6 — the year-close split**
+- [ ] **Step 5: Build figure 6 — the close-and-reopen gate**
 
-Create `components/figures/YearClose.jsx`:
-
-```jsx
-export default function YearClose() {
-  const investors = [
-    { name: 'Investor A', days: 365, pct: '50%' },
-    { name: 'Investor B', days: 210, pct: '29%' },
-    { name: 'Investor C', days: 150, pct: '21%' },
-  ];
-
-  return (
-    <svg viewBox="0 0 640 230" role="img" aria-label="Net profit splitting in half, the investor half weighted by days held">
-      <title>Closing a financial year</title>
-
-      <g data-seq="1">
-        <rect x="0" y="18" width="180" height="48" rx="2" fill="var(--surface)" stroke="var(--accent)" strokeWidth="1.5" />
-        <text x="16" y="42" fill="var(--accent)" fontWeight="700">Net profit</text>
-        <text x="16" y="59" fill="var(--dim)" fontSize="11">15 March – 14 March</text>
-      </g>
-
-      <g data-seq="2">
-        <path d="M184 42 L240 42 L240 90" stroke="var(--rule)" strokeWidth="1.5" fill="none" />
-        <rect x="248" y="66" width="180" height="48" rx="2" fill="var(--surface)" stroke="var(--rule)" />
-        <text x="264" y="90" fill="var(--ink)" fontWeight="700">50% operating partner</text>
-        <text x="264" y="107" fill="var(--dim)" fontSize="11">for running the business</text>
-      </g>
-
-      <g data-seq="3">
-        <path d="M240 90 L240 148" stroke="var(--rule)" strokeWidth="1.5" fill="none" />
-        <rect x="248" y="124" width="180" height="48" rx="2" fill="var(--surface)" stroke="var(--rule)" />
-        <text x="264" y="148" fill="var(--ink)" fontWeight="700">50% investors</text>
-        <text x="264" y="165" fill="var(--dim)" fontSize="11">weighted by days held</text>
-      </g>
-
-      <g data-seq="4">
-        {investors.map((inv, i) => (
-          <g key={inv.name}>
-            <path d={`M432 148 L462 ${34 + i * 56 + 22}`} stroke="var(--rule)" strokeWidth="1" fill="none" />
-            <rect x="466" y={34 + i * 56} width="170" height="44" rx="2" fill="var(--surface)" stroke="var(--rule)" />
-            <text x="480" y={34 + i * 56 + 20} fill="var(--ink)">{inv.name}</text>
-            <text x="480" y={34 + i * 56 + 36} fill="var(--dim)" fontSize="11">
-              {inv.days} days → {inv.pct}
-            </text>
-          </g>
-        ))}
-      </g>
-
-      <g data-seq="5">
-        <text x="0" y="216" fill="var(--dim)" fontSize="11">
-          Illustrative. Once closed, the percentages freeze and the year cannot be rewritten.
-        </text>
-      </g>
-    </svg>
-  );
-}
-```
+Create `components/figures/YearClose.jsx`. It must show only the state
+machine — open, closed, a blocked late entry, and the two reopen conditions.
+**It must not depict how profit is divided:** SOMSTAR consented to being
+named as a client, not to having their commercial terms published. See the
+shipped component for the exact drawing.
 
 - [ ] **Step 6: Build figure 7 — the role matrix**
 
@@ -2061,20 +2010,13 @@ export default function Page() {
 
       <h2>Closing a year is a one-way door</h2>
       <p>
-        At year end the profit is split: half to the partner running the business day to day, half
-        among the investors — weighted by how many days each one&rsquo;s capital was actually held,
-        not by a percentage agreed in advance. Money put in halfway through the year earns half a
-        year&rsquo;s share.
-      </p>
-      <p>
-        Once closed, those percentages freeze permanently and a late expense cannot reach back and
-        change them. Reopening is possible only while no later year has been closed and the money
-        the close moved into people&rsquo;s capital is still there — checked by amount rather than by
-        date, because withdrawals can be back-dated.
+        Closing a financial year settles every shareholder balance and freezes it.
+        The commercial terms behind that settlement are the client's business and are not
+        described here. Reopening is gated on two conditions rather than a permission.
       </p>
       <Figure
         title="Figure 6"
-        caption="Net profit dividing in half, the investor half subdividing by days held. Illustrative percentages."
+        caption="Closing is one-way, and reopening is a gate rather than a right."
       >
         <YearClose />
       </Figure>
@@ -2301,54 +2243,17 @@ git commit -m "feat: earlier work page and full route coverage in the build chec
 
 - [ ] **Step 1: Write the privacy guard**
 
-Create `scripts/check-privacy.mjs`:
+Create `scripts/check-privacy.mjs`. It walks the built output **and this
+repository's own documents and source** — the repo is public, so a scrubbed
+page beside an unscrubbed spec leaks equally — and fails the build if any
+forbidden string appears, or if the admin host turns up inside an `href`.
 
-```js
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join } from 'node:path';
-
-const OUT = 'out';
-
-const FORBIDDEN = [
-  ['somstar-website', 'private repository name'],
-  ['github.com/saturnthehustler/inventory', 'private repository link'],
-  ['black-haze-e617', 'Cloudflare Worker name'],
-  ['CLOUDFLARE_API_TOKEN', 'secret name'],
-  ['CLOUDFLARE_ACCOUNT_ID', 'secret name'],
-  ['wrangler', 'deployment tooling detail'],
-  ['61641', 'real client acceptance figure'],
-  ['61,641', 'real client acceptance figure'],
-  ['9777738', "SOMSTAR's business phone number"],
-  ['977 7738', "SOMSTAR's business phone number"],
-];
-
-function walk(dir) {
-  return readdirSync(dir).flatMap((name) => {
-    const full = join(dir, name);
-    return statSync(full).isDirectory() ? walk(full) : [full];
-  });
-}
-
-const files = walk(OUT).filter((f) => /\.(html|txt|json|js|css)$/.test(f));
-const failures = [];
-
-for (const file of files) {
-  const text = readFileSync(file, 'utf8');
-  for (const [needle, why] of FORBIDDEN) {
-    if (text.includes(needle)) failures.push(`${file}: contains "${needle}" — ${why}`);
-  }
-  // The admin host may be named in prose, but never linked.
-  for (const [, href] of text.matchAll(/href="([^"]*inventory\.somstarkitchen\.com[^"]*)"/g)) {
-    failures.push(`${file}: links the admin host — ${href}`);
-  }
-}
-
-if (failures.length) {
-  console.error('PRIVACY CHECK FAILED\n' + failures.map((f) => '  ! ' + f).join('\n'));
-  process.exit(1);
-}
-console.log(`privacy check passed — ${files.length} files scanned, ${FORBIDDEN.length} patterns clear`);
-```
+**Do not list the forbidden strings in this document.** They are the private
+repository names, the Cloudflare Worker and secret names, the test suite's
+acceptance figure, the client's business phone number, and their partnership
+terms. They live in the script, which exempts itself from its own scan, and
+nowhere else. Writing them here would publish exactly what the check exists
+to keep unpublished.
 
 - [ ] **Step 2: Run it against the current build**
 
