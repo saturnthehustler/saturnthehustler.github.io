@@ -112,7 +112,7 @@ export default function Page() {
 
       <p className="study-out">
         See it running:{' '}
-        <a href="https://somstarkitchen.com" target="_blank" rel="noopener noreferrer">
+        <a className="link-block" href="https://somstarkitchen.com" target="_blank" rel="noopener noreferrer">
           somstarkitchen.com
         </a>
       </p>

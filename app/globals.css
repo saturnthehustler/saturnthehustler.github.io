@@ -231,7 +231,14 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
 .study p { margin: 0 0 1rem; }
 .study code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em; background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: .1em .35em; }
 .study-out { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-.note { border-left: 2px solid var(--accent); padding: .5rem 0 .5rem 1rem; color: var(--dim); font-size: .92rem; margin: 2rem 0; }
+.note {
+  border-block: 1px solid var(--rule);
+  padding: 1rem 0;
+  margin: 2.5rem 0;
+  color: var(--dim);
+  font-size: .92rem;
+  font-style: italic;
+}
 
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1rem; margin: 2rem 0; padding: 1.25rem 0; border-block: 1px solid var(--rule); }
 .facts dt { font-family: var(--font-display), Georgia, serif; font-size: var(--step-3); color: var(--accent); font-variant-numeric: tabular-nums; }
@@ -240,3 +247,14 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
 .earlier-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); }
 .earlier-item h2 { font-size: var(--step-2); margin: 0 0 .6rem; }
 .disclosure { max-width: 46ch; margin-top: .5rem; font-size: .8rem; opacity: .85; }
+
+/* Standalone links need a real tap area. Links inline in a sentence are
+   exempt under WCAG 2.5.8 and are deliberately left alone, since padding
+   them would break the line rhythm of the prose. */
+.site-name,
+.site-head nav a,
+.link-block {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}

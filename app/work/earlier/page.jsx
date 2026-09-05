@@ -52,7 +52,7 @@ export default function Page() {
           <h2>{p.title}</h2>
           <p>{p.body}</p>
           <p>
-            <a href={p.repo} target="_blank" rel="noopener noreferrer">
+            <a className="link-block" href={p.repo} target="_blank" rel="noopener noreferrer">
               View on GitHub
             </a>
           </p>
