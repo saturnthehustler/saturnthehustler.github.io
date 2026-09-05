@@ -76,3 +76,79 @@ a { color: var(--accent); }
 }
 
 .wrap { width: min(72rem, 100% - 2.5rem); margin-inline: auto; }
+
+/* ============================================================
+   Motion
+   Curves are from the animate skill's table, not hand-rolled.
+   Every hidden state below is gated on html.js, so the exported
+   HTML renders complete when JavaScript never runs.
+   ============================================================ */
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* --- Hero load sequence -------------------------------------
+   A CSS animation, not a JS-driven transition: it runs off the
+   main thread, and first paint is exactly when the main thread
+   is busiest. Rare/first-time tier, so delight is in budget. */
+html.js .hero > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rise 300ms var(--ease-out) forwards;
+}
+html.js .hero > *:nth-child(2) { animation-delay: 50ms; }
+html.js .hero > *:nth-child(3) { animation-delay: 100ms; }
+html.js .hero > *:nth-child(4) { animation-delay: 150ms; }
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Scroll reveal ------------------------------------------
+   Marketing surface only. Used on the index work list; never on
+   case-study prose, where revealing paragraphs as they are read
+   is an interface fighting its reader. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+html.js [data-reveal][data-in="true"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 500ms var(--ease-out) calc(var(--stagger-index, 0) * 60ms),
+    transform 500ms var(--ease-out) calc(var(--stagger-index, 0) * 60ms);
+}
+
+/* --- Figure assembly ----------------------------------------
+   Purpose is explanation: parts appear in the order the
+   mechanism runs. The beat is longer than a group entrance
+   because the sequence is the content, not decoration. */
+html.js .figure [data-seq] { opacity: 0; }
+html.js .figure[data-in="true"] [data-seq] {
+  opacity: 1;
+  transition: opacity 450ms var(--ease-out) var(--seq-delay, 0ms);
+}
+html.js .figure [data-seq="1"] { --seq-delay: 0ms; }
+html.js .figure [data-seq="2"] { --seq-delay: 120ms; }
+html.js .figure [data-seq="3"] { --seq-delay: 240ms; }
+html.js .figure [data-seq="4"] { --seq-delay: 360ms; }
+html.js .figure [data-seq="5"] { --seq-delay: 480ms; }
+
+/* --- Reduced motion -----------------------------------------
+   Fewer and gentler, not zero: everything resolves to its
+   resting state with no movement. */
+@media (prefers-reduced-motion: reduce) {
+  html.js .hero > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  html.js [data-reveal] { opacity: 1; transform: none; }
+  html.js [data-reveal][data-in="true"] { transition: none; }
+  html.js .figure [data-seq] { opacity: 1; }
+  html.js .figure[data-in="true"] [data-seq] { transition: none; }
+}
