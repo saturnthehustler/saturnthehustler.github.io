@@ -298,7 +298,9 @@ webfonts and JavaScript included, below-the-fold images excluded. This is a real
 cost of choosing Next.js over static HTML: React and Motion are roughly 100KB of
 it, where the hand-written version would have shipped almost none. The trade is
 deliberate — it buys the animation, the component reuse across seven figures, and
-one deployment pattern shared with the SOMSTAR site.
+one deployment pattern shared with the SOMSTAR site. The analytics beacon adds
+about 2KB on top, deferred. The contact form adds nothing — it ships no library
+and calls no service.
 
 **Accessibility:** skip-to-content link, headings matching visual hierarchy,
 visible keyboard focus, WCAG AA contrast on both themes, 44px touch targets,
@@ -331,8 +333,65 @@ and 1280px with no horizontal overflow.
   with the rule above — but they are one line to delete if that reading is wrong.
 - **No timeline.** Entry-based structure means gaps between projects are neither
   implied nor explained.
-- **Contact:** Abdirahman.bcs@gmail.com, plus GitHub, LinkedIn (`in/flyrye`) and
-  X (`@Intelli9Hacker`).
+- **Contact:** the WhatsApp compose form (see below), with Abdirahman.bcs@gmail.com
+  as a `mailto:` link beside it, plus GitHub, LinkedIn (`in/flyrye`) and X
+  (`@Intelli9Hacker`).
+
+## Contact form
+
+**A compose form, not a submit form** — the same pattern as the SOMSTAR contact
+page. The visitor fills it in, and the button builds a pre-filled message and
+opens WhatsApp with it. Nothing is posted anywhere.
+
+That choice carries three properties worth stating plainly: no backend exists to
+pay for or maintain, no third-party service reads a message before he does, and
+there is nothing to spam, because there is no endpoint to post to. It is also why
+"no backend" survives as a constraint even though the site now has a form.
+
+**Fields:** name; what you need (a short select — new build, existing system,
+hiring, something else); the message. The select earns its place by making the
+opening message specific rather than "hi".
+
+**Mechanism:** the form composes `https://wa.me/<number>?text=<encoded message>`
+and opens it. WhatsApp Web handles this on desktop, so it is not a phone-only
+path.
+
+**Requires his WhatsApp number.** The number published on somstarkitchen.com is
+SOMSTAR's business line, not his, and must not be reused without asking.
+
+**Without JavaScript** the composed URL cannot be built, so the form is replaced
+at render time by what does work unaided: a plain WhatsApp link with no
+pre-filled text, and the email address as a `mailto:` link. Both are present in
+the contact section regardless, for anyone who does not use WhatsApp.
+
+**Privacy:** the form collects nothing, stores nothing and transmits nothing. No
+consent notice is needed for it.
+
+## Analytics
+
+**Cloudflare Web Analytics.** Free on all plans, sets no cookies, and does not
+track visitors between sites. The reason it fits here specifically: it requires
+neither a DNS change nor traffic proxied through Cloudflare, so it runs on
+GitHub Pages unmodified.
+
+**Setup:** register the site in the Cloudflare dashboard and paste the beacon
+snippet it generates, which carries a site token. Roughly 2KB, loaded `defer` so
+it never blocks paint. Copy the snippet from the dashboard rather than from
+memory — it is the authoritative form.
+
+**What it answers:** how many people arrive, which pages they read, where they
+came from (a recruiter's email, LinkedIn, a search), which country, which device,
+and Core Web Vitals as real visitors experience them. That last one is the useful
+one against the 250KB budget — it measures the site on the connections it
+actually gets, not on a developer's laptop.
+
+**What it does not answer:** it reports pageviews, not custom events, so it
+cannot tell him whether the somstarkitchen.com link was clicked. Outbound-link
+tracking would need a different tool and is not worth adding one for.
+
+**Disclosure:** it sets no cookies, so no cookie banner is required — but each
+pageview is reported to Cloudflare, so the footer states plainly that Cloudflare
+Web Analytics is in use.
 
 ## What is deliberately not published
 
@@ -355,8 +414,8 @@ the contact section.
 ## Out of scope
 
 - Any CMS, blog engine or content pipeline.
-- A contact form. The email address is a link; there is no backend.
-- Analytics.
+- A server-side form handler, a third-party form service, or stored submissions.
+  The contact form composes a message; it never posts one.
 - TypeScript.
 - Translating the portfolio itself into Somali or Arabic.
 - Changing anything in the SOMSTAR repositories.
@@ -374,3 +433,8 @@ the contact section.
 7. The deployed Pages build serves `_next/` correctly — the `.nojekyll` check.
 8. Nothing private is published, measured against "What is deliberately not
    published" above.
+9. The contact form composes a correctly encoded WhatsApp message and opens it
+   on both desktop and mobile. With JavaScript disabled, the contact section
+   still offers a working WhatsApp link and a `mailto:` address.
+10. The deployed site reports pageviews to Cloudflare Web Analytics, and the
+    footer discloses that it does.
