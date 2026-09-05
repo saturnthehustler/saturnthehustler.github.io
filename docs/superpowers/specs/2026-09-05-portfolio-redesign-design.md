@@ -3,6 +3,7 @@
 **Status:** approved design, not yet implemented
 **Date:** 2026-09-05
 **Repo:** `saturnthehustler.github.io`
+**Revision:** 2 — Next.js build, projects-only history, SOMSTAR consent granted
 
 ## What this is
 
@@ -23,9 +24,12 @@ Not a student portfolio, not a stack list. The evidence is two systems a
 business depends on, explained deeply enough that a reader can see the
 engineering decisions rather than take them on trust.
 
-**Audience:** engineering hiring managers and technical founders, in that
-order. Both skim first and read second, so every case study has to work at two
-depths — a headline claim with a number attached, and a paragraph that earns it.
+**Audience:** prospective clients and engineering hiring managers. Both skim
+first and read second, so every case study works at two depths — a headline
+claim with a number attached, and a paragraph that earns it. Clients in
+particular need to reach something they can *use*, so the live
+<https://somstarkitchen.com> link is prominent rather than buried in a case
+study.
 
 **Positioning consequence:** the 2024 Python work stays on the site but stops
 being the argument. It becomes "where I learned to finish things."
@@ -48,36 +52,38 @@ The neutral is a cool grey-green, not a pure grey — it sits under a teal-ink
 accent without fighting it.
 
 **Type.** Instrument Serif (400, roman and italic) for display; Public Sans
-(400/500/700) for body and UI. Both from Google Fonts with real fallback stacks
-(`Georgia, serif` and `system-ui, sans-serif`). Body measure stays near 65
-characters. Headings get `text-wrap: balance`.
+(400/500/700) for body and UI. Loaded through `next/font/google`, which
+self-hosts the files at build time — no render-blocking request to a third-party
+host. Real fallback stacks declared (`Georgia, serif` and `system-ui,
+sans-serif`). Body measure stays near 65 characters. Headings get
+`text-wrap: balance`.
 
 **Both themes are required.** The current site is dark-only. Tokens are declared
 in bare `:root`, redefined under `@media (prefers-color-scheme: dark)` guarded as
 `:root:not([data-theme="light"])`, and again under `:root[data-theme="dark"]`, so
-a toggle wins in both directions. No colour is defined only inside a media block.
+the toggle wins in both directions. No colour is defined only inside a media
+block.
 
 ## Structure
 
-Four static pages. No build step, no framework.
+Four routes, statically exported.
 
 | Route | Contents |
 |---|---|
-| `/` | Hero, three-entry work index, earlier-work strip, about, contact |
+| `/` | Hero, three-entry work index, about, contact |
 | `/work/somstar-catalogue/` | Case study — the trilingual catalogue site |
 | `/work/somstar-system/` | Case study — the business system |
 | `/work/earlier/` | The five 2024 Python projects |
 
-Rejected: a single long page (deep case studies make it enormous and dilute the
-editorial feel), and an Astro or 11ty build (a toolchain for four pages, on a
-repo that currently needs none).
+Rejected: a single long page — deep case studies make it enormous and dilute the
+editorial feel.
 
 Each case study follows the same shape, so they read as a series:
 
 1. **Standfirst** — one paragraph: what it is, who it is for, what was at stake.
 2. **Facts strip** — three or four figures with labels.
 3. **The problem** — the constraint that made it non-trivial.
-4. **Two or three mechanism sections**, each ending in a figure.
+4. **Two to four mechanism sections**, each ending in a figure.
 5. **What I would change** — one honest paragraph. This is the section that
    makes the rest credible.
 6. **Links** — live URL only.
@@ -114,8 +120,11 @@ framework, no third-party UI libraries, one stylesheet.
 
 **Screenshots** (this site is public, so real screenshots are used): home at
 desktop width; a category grid; one product page shown three times side by side
-in English, Somali and Arabic. Captured at 1280px, exported at 1× and 2×,
-served as WebP with JPEG fallback, `loading="lazy"`, explicit `width`/`height`.
+in English, Somali and Arabic. Captured at 1280px, exported at 1× and 2×, served
+as WebP with JPEG fallback, `loading="lazy"`, explicit `width`/`height`.
+
+**Client-facing link.** This case study is the one a prospective client will
+read, so it opens and closes with a plain link to the live site.
 
 ## Case study: the business system
 
@@ -136,8 +145,8 @@ dollars only.
 1. **Money that cannot drift.** All amounts stored as whole cents; no floating
    point anywhere. Purchases blend cost by weighted average.
    → *Figure 4: weighted-average costing.*
-2. **A document either moves stock or it doesn't.** Quotations never touch
-   stock until converted to an invoice. Every stock movement writes an audit row
+2. **A document either moves stock or it doesn't.** Quotations never touch stock
+   until converted to an invoice. Every stock movement writes an audit row
    recording what changed, the resulting balance, why, on which document, and by
    whom. Each invoice line freezes that day's product name, code, model and cost,
    so later edits cannot rewrite history. → *Figure 5: document and stock flow.*
@@ -157,9 +166,9 @@ with CSRF refused twice (Origin header and session token).
 
 ## Earlier work
 
-One page, five short entries — a few hundred words each, honest about scope.
-All five repos are public, so each links to GitHub and reuses its existing
-thumbnail from `Assets/`.
+One page, five short entries — a few hundred words each, honest about scope. All
+five repos are public, so each links to GitHub and reuses its existing thumbnail
+from `Assets/`.
 
 | Project | Framing |
 |---|---|
@@ -171,19 +180,18 @@ thumbnail from `Assets/`.
 
 ## Diagram specification
 
-Seven figures. Six are hand-authored inline SVG; figure 7 is tabular data and is
-marked up as an HTML `<table>`. No diagramming library.
+Seven figures. Six are hand-authored inline SVG as React components; figure 7 is
+tabular data and is marked up as an HTML `<table>`. No diagramming library.
 
 **Rules for every figure** (the SVG-specific rules apply to figures 1–6):
 
-- Colours come from the same CSS custom properties as the page, so figures
-  work in both themes. No literal hex inside SVG except where a fill must not
-  change.
+- Colours come from the same CSS custom properties as the page, so figures work
+  in both themes. No literal hex inside SVG except where a fill must not change.
 - Every drawn shape gets an explicit `fill`. The `viewBox` leaves room for
   outermost labels.
 - Each figure has a real `<figcaption>` stating what it shows — not a repeat of
   the heading above it.
-- Each figure carries `role="img"` and an `<title>`, with the mechanism also
+- Each figure carries `role="img"` and a `<title>`, with the mechanism also
   stated in the prose, so the page works without the graphics.
 - Text inside SVG is real `<text>`, never paths.
 - Figures scroll inside their own `overflow-x: auto` container. The page body
@@ -196,87 +204,160 @@ marked up as an HTML `<table>`. No diagramming library.
    grid is even.
 2. **URL tree** — `/`, `/so/`, `/ar/` branching to a shared English slug, with
    the 219-URL total.
-3. **Payload comparison** — a bar pair, 53KB source against ~6KB delivered.
-   Both bars labelled with the value they reach.
+3. **Payload comparison** — a bar pair, 53KB source against ~6KB delivered. Both
+   bars labelled with the value they reach.
 4. **Weighted-average costing** — 2 units at $1,400 and 3 at $1,600 resolving to
    5 units held at $1,520, with the arithmetic visible.
-5. **Document and stock flow** — quotation (no stock movement) and invoice
-   (stock down, audit row written) as two paths from one product line.
+5. **Document and stock flow** — quotation (no stock movement) and invoice (stock
+   down, audit row written) as two paths from one product line.
 6. **Year-close split** — net profit dividing 50/50, the investor half
    subdividing by days-held weighting.
-7. **Role matrix** — Owner / Manager / Staff against capability rows. A table
-   rendered as HTML, not SVG, since it is tabular data.
+7. **Role matrix** — Owner / Manager / Staff against capability rows.
 
 ## Technical approach
 
-- **Static HTML on GitHub Pages.** No build step, no package manager, no CI.
-- **Files:** `index.html`, `work/somstar-catalogue/index.html`,
-  `work/somstar-system/index.html`, `work/earlier/index.html`, one shared
-  `assets/styles.css`, one small `assets/theme.js` for the theme toggle.
-- **CSS is extracted from inline into one stylesheet** — the current ~700 inline
-  lines are the main reason the page resists editing.
-- **No JavaScript is required to read the site.** The only script is the theme
-  toggle, which enhances a page that already works.
-- **Images:** screenshots optimised to WebP with JPEG fallback, explicit
-  dimensions, `loading="lazy"` below the fold. Existing `Assets/` thumbnails
-  reused for earlier work.
+**Next.js, statically exported, served by GitHub Pages.** Same shape as the
+SOMSTAR catalogue site, which means one deployment pattern to maintain rather
+than two.
 
-**Performance budget:** `/` under 150KB on a cold load — HTML, CSS and webfonts
-included, below-the-fold images excluded. The hero is typographic, so no image
-blocks first paint. For comparison, the current site ships ~250KB of skill-logo
-JPEGs alone, before anything else.
+```js
+// next.config.mjs
+const nextConfig = {
+  output: 'export',
+  trailingSlash: true,      // emits /work/x/index.html — what Pages wants
+  images: { unoptimized: true },  // required: no image optimiser on Pages
+}
+```
+
+**Three things that break GitHub Pages if missed:**
+
+1. **`.nojekyll` must exist in the published output.** Pages runs Jekyll by
+   default, and Jekyll ignores directories beginning with an underscore — which
+   silently drops all of `_next/`, leaving an unstyled page with no JavaScript.
+2. **Pages source must change** from "deploy from a branch" to "GitHub Actions".
+   The repo currently serves `index.html` from the root of `main`.
+3. **No `basePath` is needed.** `saturnthehustler.github.io` is a user site
+   served from the domain root, unlike a project site.
+
+**Deployment:** a GitHub Actions workflow on push to `main` — build, upload the
+`out/` directory as a Pages artifact, deploy. No manual step.
+
+**Structure:** App Router. `app/layout.jsx`, `app/page.jsx`, one `page.jsx` per
+case-study route, `components/` for the figure components and shared pieces, and
+one `app/globals.css` holding the tokens. Plain JavaScript with JSX, no
+TypeScript — matching both SOMSTAR repos.
+
+**Styling:** one stylesheet, CSS custom properties, no framework. The SOMSTAR
+site is built this way and it is the reason it has nothing to keep updated.
+
+## Animation
+
+Motion (`motion/react`). Purposeful, not decorative — the Field Notes direction
+is quiet, so motion earns its place by explaining something or by acknowledging
+input.
+
+**Where motion is used:**
+
+- **Load sequence on `/`.** Name, headline, standfirst and work-list entries
+  stagger in once, on first paint. One orchestrated moment rather than an effect
+  per section.
+- **Figures assemble on entry.** The signature moment. Each diagram's elements
+  reveal in the order the mechanism runs — the image pipeline builds
+  left to right, source photo through to fingerprinted URL; the year-close split
+  divides, then subdivides. The animation *is* the explanation, which is the only
+  reason it belongs on a page this restrained.
+- **Work-list entries** reveal on scroll with `whileInView` and
+  `viewport={{ once: true }}`.
+- **Controls** get hover and press feedback: the entry arrow shifts, the rule
+  under a link grows from the left.
+
+**Nothing else animates.** No parallax, no scroll-jacking, no section-by-section
+fades.
+
+**Content must never be gated behind motion.** Three defences, all required:
+
+1. An inline script in `<head>` sets a `js` class on `<html>` before first
+   paint. Hidden initial states apply only under `.js`, so with JavaScript
+   disabled or hydration failed, the statically exported HTML renders plainly and
+   completely.
+2. `useReducedMotion()` short-circuits every animation to its resting state when
+   the visitor has asked for reduced motion. Reveals become instant; the load
+   sequence does not run.
+3. A failsafe timer reveals anything still hidden after five seconds, so a failed
+   observer can never leave a blank panel — the same guard used on the SOMSTAR
+   site.
+
+**Bundle cost:** `LazyMotion` with the `domAnimation` feature set and the `m`
+component, so the full Motion bundle is not shipped on first load. Verify the
+current API at implementation time.
+
+## Budgets and quality bars
+
+**Performance:** `/` under 250KB transferred on a cold load — HTML, CSS,
+webfonts and JavaScript included, below-the-fold images excluded. This is a real
+cost of choosing Next.js over static HTML: React and Motion are roughly 100KB of
+it, where the hand-written version would have shipped almost none. The trade is
+deliberate — it buys the animation, the component reuse across seven figures, and
+one deployment pattern shared with the SOMSTAR site.
 
 **Accessibility:** skip-to-content link, headings matching visual hierarchy,
 visible keyboard focus, WCAG AA contrast on both themes, 44px touch targets,
-`prefers-reduced-motion` honoured. Verified at 390px, 768px, 1024px and 1280px
-with no horizontal overflow.
-
-**Motion:** hover and press feedback on controls, and nothing else. Everything
-meant to be read is visible at rest, without scrolling to trigger it.
+`prefers-reduced-motion` honoured throughout. Verified at 390px, 768px, 1024px
+and 1280px with no horizontal overflow.
 
 ## What gets deleted
 
 - `particles.js` and its CDN script tag.
 - The 15 skill-logo JPEGs (~250KB) and the skills section built from them. Skills
-  are evidenced by the case studies; a wall of logos says less.
+  are evidenced by the case studies; a wall of logos evidences nothing.
 - `background-attachment: fixed` on the hero — broken on iOS.
 - The duplicate-render bug: projects and experience currently exist as *both*
   hardcoded HTML and JS arrays rendering into `#project-list` and
   `.experience-grid`.
 - The typewriter and blink animations on the hero heading.
-- All Macruuf Agency content.
+- The entire Experience section — see below.
 
 ## Content decisions
 
-- **Macruuf Agency is removed entirely** and not referenced anywhere.
-- **Taaj Services** (Data Entry Specialist, Feb 2021 – Nov 2023) is kept as a
-  single dated line under a "Background" heading in the About section, not as a
-  card. It is real history and reads honestly at that weight. Trivially removed
-  if unwanted.
-- **Education** stays as it is: BSc Computer Science, Cavendish University
-  Uganda, 2020–2024; Kubicle Excel certificates; IBM Cybersecurity Practitioner.
-- **The site does not present a continuous timeline.** Entry-based structure
-  means gaps between roles are not implied or explained.
-- **SOMSTAR engagement is dated "2026 — ongoing"**, which is what the repository
-  history supports: both repos created 2026-09-01, last pushed 2026-09-05.
+- **No employment history anywhere on the site.** Macruuf Agency and Taaj
+  Services are both removed, and the Experience section goes with them. The site
+  presents projects only.
+- **SOMSTAR appears as named client work, not as a job.** Dated "2026 —
+  ongoing", which is what the repository history supports: both repos created
+  2026-09-01, last pushed 2026-09-05.
+- **Education and certifications stay:** BSc Computer Science, Cavendish
+  University Uganda, 2020–2024; Kubicle Excel certificates; IBM Cybersecurity
+  Practitioner. These are credentials rather than jobs, so they do not conflict
+  with the rule above — but they are one line to delete if that reading is wrong.
+- **No timeline.** Entry-based structure means gaps between projects are neither
+  implied nor explained.
 - **Contact:** Abdirahman.bcs@gmail.com, plus GitHub, LinkedIn (`in/flyrye`) and
   X (`@Intelli9Hacker`).
 
 ## What is deliberately not published
+
+SOMSTAR have given consent to be named as a client. That consent covers the
+work, not their internals, so the following still stay off the site:
 
 - No GitHub links for either SOMSTAR repo — both are private.
 - No internal infrastructure detail: no Cloudflare Worker name, no account IDs,
   no secret names or rotation steps, no deploy commands.
 - The admin hostname `inventory.somstarkitchen.com` is named in prose as the
   system's address but is not linked, and no login screen is shown.
-- No real customer names, invoice numbers, balances or the test suite's
-  acceptance figures.
+- No real customer names, invoice numbers, balances, or the acceptance figures
+  from the test suite.
+
+`https://somstarkitchen.com` is the opposite case: it is public, it is the
+strongest single piece of evidence on the site, and prospective clients should
+land on it. It is linked from the hero, from the catalogue case study, and from
+the contact section.
 
 ## Out of scope
 
 - Any CMS, blog engine or content pipeline.
 - A contact form. The email address is a link; there is no backend.
 - Analytics.
+- TypeScript.
 - Translating the portfolio itself into Somali or Arabic.
 - Changing anything in the SOMSTAR repositories.
 
@@ -285,15 +366,11 @@ meant to be read is visible at rest, without scrolling to trigger it.
 1. A reader who skims only headings and figures can state what both SOMSTAR
    systems do and one engineering decision from each.
 2. Every claim on the site traces to something verified in this spec.
-3. The site loads and reads correctly with JavaScript disabled.
+3. The site reads completely with JavaScript disabled, and with
+   `prefers-reduced-motion: reduce` set.
 4. Both themes pass WCAG AA on text and interactive elements.
 5. No horizontal overflow at 390px.
-6. Nothing private is published — measured against "What is deliberately not
+6. `/` transfers under 250KB cold, excluding below-the-fold images.
+7. The deployed Pages build serves `_next/` correctly — the `.nojekyll` check.
+8. Nothing private is published, measured against "What is deliberately not
    published" above.
-
-## Confirmation still needed before publishing
-
-**Naming SOMSTAR as a client on a public page.** Everything published is
-architecture rather than data, but the system handles their money and their
-shareholder structure, so it is their call as much as his. Worth a message to
-them before the site goes live.
