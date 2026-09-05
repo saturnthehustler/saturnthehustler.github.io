@@ -38,6 +38,9 @@ Every task's requirements implicitly include this section.
 | `playwright.config.mjs` | Browser test runner |
 | `.github/workflows/deploy.yml` | Build and deploy to Pages |
 | `app/layout.jsx` | Document shell, fonts, pre-paint script, header, footer |
+| `app/icon.svg` | Favicon — the monogram on its tile. Auto-detected by the App Router |
+| `app/apple-icon.png` | 180px raster of the same mark, for iOS home screens |
+| `public/monogram.svg` | Bare mark in `currentColor`, for use inside the page |
 | `app/globals.css` | All tokens, all component styles, all reveal transitions |
 | `app/page.jsx` | Index — hero, work index, about, contact |
 | `app/work/somstar-catalogue/page.jsx` | Case study 1 |
@@ -640,12 +643,44 @@ export default function RootLayout({ children }) {
 
 The pre-paint script does two jobs: it adds `js`, which every hidden animation state depends on, and it applies the stored theme before first paint so there is no flash of the wrong theme.
 
-- [ ] **Step 10: Verify the build still exports**
+- [ ] **Step 10: Rasterise the apple-touch icon**
+
+`app/icon.svg` and `public/monogram.svg` already exist in the repo. Next.js App Router
+picks up `app/icon.svg` as the favicon automatically — no `<link>` tag is needed.
+
+iOS ignores SVG favicons when a page is added to the home screen, so it needs a PNG:
+
+```bash
+npm install -D sharp
+```
+
+Create `scripts/make-apple-icon.mjs`:
+
+```js
+import { readFileSync, writeFileSync } from 'node:fs';
+import sharp from 'sharp';
+
+const svg = readFileSync('app/icon.svg');
+const png = await sharp(svg, { density: 512 }).resize(180, 180).png().toBuffer();
+writeFileSync('app/apple-icon.png', png);
+console.log('app/apple-icon.png written — 180x180');
+```
+
+Run it once and commit the result:
+
+```bash
+node scripts/make-apple-icon.mjs
+```
+
+It is a one-off rather than a build step: the mark changes rarely, and a committed
+PNG keeps `sharp` out of the deployment path entirely.
+
+- [ ] **Step 11: Verify the build still exports**
 
 Run: `npm run build && npm run check:build`
-Expected: pass.
+Expected: pass. Confirm `out/icon.svg` and `out/apple-icon.png` are both present.
 
-- [ ] **Step 11: Commit**
+- [ ] **Step 12: Commit**
 
 ```bash
 git add app components scripts tests vitest.config.mjs vitest.setup.js package.json package-lock.json
