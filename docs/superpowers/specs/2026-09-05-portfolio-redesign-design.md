@@ -356,8 +356,20 @@ opening message specific rather than "hi".
 and opens it. WhatsApp Web handles this on desktop, so it is not a phone-only
 path.
 
-**Requires his WhatsApp number.** The number published on somstarkitchen.com is
-SOMSTAR's business line, not his, and must not be reused without asking.
+**Number:** `+252 61 950 0776`. In the `wa.me` URL it must be digits only, with
+no `+`, spaces or punctuation — `252619500776`. Displayed in the contact section
+in its readable, spaced form.
+
+This is his personal line, not the SOMSTAR business number published on
+somstarkitchen.com, which is not reused anywhere on this site.
+
+The number is shown as visible text as well as being in the link. That is
+deliberate: for a prospective client, a visible number reads as more
+accountable than an unlabelled button, and it matches what SOMSTAR's own site
+does. The trade is that a number on a public page will be harvested by scrapers
+eventually — and hiding the text would not prevent it, since the digits sit in
+the `wa.me` href either way. Removing the visible text is a one-line change if
+the spam becomes tiresome.
 
 **Without JavaScript** the composed URL cannot be built, so the form is replaced
 at render time by what does work unaided: a plain WhatsApp link with no
