@@ -197,3 +197,36 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
   .entry { grid-template-columns: 1fr; gap: .35rem; }
   .entry-go { display: none; }
 }
+
+/* --- Figures ------------------------------------------------ */
+.figure { margin: 2.5rem 0; }
+.figure-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 2px; background: var(--surface); padding: 1.5rem; }
+.figure svg { display: block; width: 100%; height: auto; min-width: 34rem; }
+.figure figcaption { margin-top: .75rem; font-size: .85rem; color: var(--dim); max-width: var(--measure); }
+.figure-title { color: var(--ink); font-weight: 700; }
+.figure text { font-family: var(--font-body), system-ui, sans-serif; font-size: 12px; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.matrix { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .9rem; }
+.matrix th, .matrix td { border-bottom: 1px solid var(--rule); padding: .7rem .6rem; text-align: left; }
+.matrix thead th { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.matrix tbody th { font-weight: 400; color: var(--ink); }
+.matrix td { text-align: center; width: 5.5rem; }
+.matrix td[data-allowed="yes"] { color: var(--accent); }
+.matrix td[data-allowed="no"] { color: var(--dim); }
+
+/* --- Case study --------------------------------------------- */
+.study { padding: clamp(2.5rem, 7vw, 4.5rem) 0; }
+.study h1 { font-size: var(--step-4); margin: .5rem 0 1rem; max-width: 18ch; }
+.study h2 { font-size: var(--step-3); margin: 3rem 0 .75rem; max-width: 22ch; }
+.study p { margin: 0 0 1rem; }
+.study code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em; background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: .1em .35em; }
+.study-out { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.note { border-left: 2px solid var(--accent); padding: .5rem 0 .5rem 1rem; color: var(--dim); font-size: .92rem; margin: 2rem 0; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1rem; margin: 2rem 0; padding: 1.25rem 0; border-block: 1px solid var(--rule); }
+.facts dt { font-family: var(--font-display), Georgia, serif; font-size: var(--step-3); color: var(--accent); font-variant-numeric: tabular-nums; }
+.facts dd { margin: .25rem 0 0; font-size: .85rem; color: var(--dim); }
+
+.earlier-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); }
+.earlier-item h2 { font-size: var(--step-2); margin: 0 0 .6rem; }
