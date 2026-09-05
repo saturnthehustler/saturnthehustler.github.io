@@ -3,10 +3,12 @@ import { join } from 'node:path';
 
 const OUT = 'out';
 
-// Routes arrive in Tasks 7-9; the full list is restored in Task 9.
 const required = [
   'index.html',
   '.nojekyll',
+  'work/somstar-catalogue/index.html',
+  'work/somstar-system/index.html',
+  'work/earlier/index.html',
 ];
 
 const failures = [];
