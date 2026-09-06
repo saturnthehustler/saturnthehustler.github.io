@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
         <a className="skip-link" href="#main">Skip to content</a>
         <header className="site-head wrap">
           <a href="/" className="site-name">Abdirahman Hassan Abdi</a>
-          <nav><a href="/work/earlier/">Earlier work</a><ThemeToggle /></nav>
+          <nav><a href="/build/">What I build</a><a href="/work/earlier/">Earlier work</a><ThemeToggle /></nav>
         </header>
         <main id="main">{children}</main>
         <footer className="site-foot wrap">

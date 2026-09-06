@@ -258,3 +258,5 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
   align-items: center;
   min-height: 44px;
 }
+
+.study h3 { font-family: var(--font-body), system-ui, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .02em; margin: 2rem 0 .5rem; color: var(--ink); }

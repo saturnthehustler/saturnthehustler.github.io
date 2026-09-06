@@ -9,6 +9,7 @@ const required = [
   'work/somstar-catalogue/index.html',
   'work/somstar-system/index.html',
   'work/earlier/index.html',
+  'build/index.html',
 ];
 
 const failures = [];

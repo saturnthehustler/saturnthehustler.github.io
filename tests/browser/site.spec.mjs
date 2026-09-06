@@ -5,6 +5,7 @@ const ROUTES = [
   '/work/somstar-catalogue/',
   '/work/somstar-system/',
   '/work/earlier/',
+  '/build/',
 ];
 
 for (const route of ROUTES) {
