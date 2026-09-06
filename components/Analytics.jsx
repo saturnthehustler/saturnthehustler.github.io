@@ -9,8 +9,10 @@ export default function Analytics() {
   if (!TOKEN) return null;
 
   return (
+    // type="module" is the form Cloudflare documents, and it defers by
+    // default. A classic `defer` script is not the documented contract.
     <script
-      defer
+      type="module"
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon={JSON.stringify({ token: TOKEN })}
     />
