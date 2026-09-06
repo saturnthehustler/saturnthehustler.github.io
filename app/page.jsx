@@ -23,6 +23,21 @@ export default function Home() {
         </p>
       </section>
 
+      {/* The lead: most visitors here are deciding whether to hire, so the
+          offer comes before the evidence rather than after it. */}
+      <section className="lead-in" aria-labelledby="lead-h">
+        <h2 id="lead-h" className="section-label">If you are here to hire me</h2>
+        <p className="lead-copy">
+          I build two things for businesses: a website your customers can actually find, and the
+          system behind the counter that runs what happens after they buy. Both explained in full
+          &mdash; what ships with them, what I would need from you, and what they deliberately are
+          not.
+        </p>
+        <p>
+          <a className="btn" href="/build/">What I can build you</a>
+        </p>
+      </section>
+
       <section className="work" aria-labelledby="work-h">
         <h2 id="work-h" className="section-label">Selected work</h2>
         <ul className="work-list">

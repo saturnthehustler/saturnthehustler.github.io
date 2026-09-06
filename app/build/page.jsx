@@ -51,6 +51,13 @@ export default function Page() {
         <WebsiteAnatomy />
       </Figure>
 
+      <p className="callout">
+        <a href="/build/features/">
+          Every feature a catalogue site includes, explained &mdash; and what it deliberately
+          doesn&rsquo;t do &rarr;
+        </a>
+      </p>
+
       <h3>What I would need from you</h3>
       <p>
         A list of what you sell, photographs in whatever state you have them, and your contact
@@ -120,7 +127,7 @@ export default function Page() {
       <h2>Something you can check</h2>
       <p>
         SOMSTAR Kitchen Equipment in Mogadishu has both. The catalogue is public &mdash; open{' '}
-        <a className="link-block" href="https://somstarkitchen.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://somstarkitchen.com" target="_blank" rel="noopener noreferrer">
           somstarkitchen.com
         </a>{' '}
         on your phone and judge it the way your own customers would. The system behind it is

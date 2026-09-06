@@ -260,3 +260,16 @@ section + section { padding-top: clamp(2.5rem, 6vw, 4rem); }
 }
 
 .study h3 { font-family: var(--font-body), system-ui, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .02em; margin: 2rem 0 .5rem; color: var(--ink); }
+
+/* --- Feature reference ------------------------------------- */
+.features { margin: 1.5rem 0 0; }
+.feature { padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.feature dt { font-weight: 700; color: var(--ink); margin-bottom: .35rem; }
+.feature dd { margin: 0; color: var(--dim); max-width: var(--measure); }
+.features-matrix { min-width: 44rem; }
+.features-matrix td { text-align: left; width: auto; color: var(--dim); }
+.features-matrix tbody th { font-weight: 700; color: var(--ink); width: 13rem; }
+
+.lead-in { border-block: 1px solid var(--rule); padding: 2rem 0 2.25rem; margin-top: 1rem; }
+.lead-copy { font-size: var(--step-1); color: var(--ink); margin: 0 0 1rem; }
+.callout { border-block: 1px solid var(--rule); padding: 1rem 0; margin: 2rem 0; font-weight: 700; }

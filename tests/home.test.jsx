@@ -25,6 +25,17 @@ describe('Home', () => {
     expect(screen.getByRole('link', { name: /earlier/i })).toBeInTheDocument();
   });
 
+  it('leads with the offer, before the evidence', () => {
+    const { container } = render(<Home />);
+    const lead = container.querySelector('.lead-in');
+    const work = container.querySelector('.work');
+    expect(lead).toBeInTheDocument();
+    // Node.compareDocumentPosition: 4 means `work` follows `lead`.
+    expect(lead.compareDocumentPosition(work) & 4).toBeTruthy();
+    expect(screen.getByRole('link', { name: /what i can build you/i }))
+      .toHaveAttribute('href', '/build/');
+  });
+
   it('mentions no employer anywhere', () => {
     const { container } = render(<Home />);
     expect(container.textContent).not.toMatch(/Macruuf|Taaj/i);
