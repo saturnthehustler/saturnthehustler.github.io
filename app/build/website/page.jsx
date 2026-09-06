@@ -1,5 +1,5 @@
 import Reveal from '@/components/Reveal';
-import { INCLUDED, NOT_INCLUDED } from '@/lib/features';
+import { INCLUDED, NOT_INCLUDED } from '@/lib/website-features';
 
 export const metadata = {
   title: 'What a catalogue site includes — Abdirahman Hassan Abdi',

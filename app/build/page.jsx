@@ -52,7 +52,7 @@ export default function Page() {
       </Figure>
 
       <p className="callout">
-        <a href="/build/features/">
+        <a href="/build/website/">
           Every feature a catalogue site includes, explained &mdash; and what it deliberately
           doesn&rsquo;t do &rarr;
         </a>
@@ -96,6 +96,13 @@ export default function Page() {
       >
         <SystemShape />
       </Figure>
+
+      <p className="callout">
+        <a href="/build/system/">
+          Everything the system does, explained &mdash; and what it deliberately doesn&rsquo;t do
+          &rarr;
+        </a>
+      </p>
 
       <h3>What I would need from you</h3>
       <p>
