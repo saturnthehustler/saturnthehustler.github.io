@@ -118,10 +118,12 @@ framework, no third-party UI libraries, one stylesheet.
    Fingerprinted URLs are cached a year as immutable; HTML revalidates so a
    deploy is visible immediately. → *Figure 3: payload comparison.*
 
-**Screenshots** (this site is public, so real screenshots are used): home at
-desktop width; a category grid; one product page shown three times side by side
-in English, Somali and Arabic. Captured at 1280px, exported at 1× and 2×, served
-as WebP with JPEG fallback, `loading="lazy"`, explicit `width`/`height`.
+**No screenshots — decided, not deferred.** The catalogue is public and one
+click away, so a picture of it is a weaker version of the thing itself: a reader
+who wants to see it can look at the real site, in their own language, on their
+own device. The three diagrams carry what a screenshot cannot — the mechanism
+behind the page rather than its surface. This also keeps the case study free of
+images that would age the moment the client changes their catalogue.
 
 **Client-facing link.** This case study is the one a prospective client will
 read, so it opens and closes with a plain link to the live site.
