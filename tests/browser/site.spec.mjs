@@ -95,12 +95,43 @@ test('everything is visible under reduced motion', async ({ browser }) => {
 });
 
 test('the pages load without console errors', async ({ page }) => {
+  // The analytics beacon reports to cloudflareinsights.com, which rejects a
+  // localhost origin with CORS — a property of running a production beacon off
+  // its registered hostname, not a defect in the page. Serve it an empty script
+  // so it never runs, and keep this assertion strict for everything else.
+  // Fulfil rather than abort: an aborted request logs net::ERR_FAILED, which is
+  // the very kind of console error being asserted against.
+  await page.route('**cloudflareinsights.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
+  );
+
   const errors = [];
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   page.on('pageerror', (e) => errors.push(String(e)));
+
   for (const route of ROUTES) {
     await page.goto(route);
     await page.waitForLoadState('networkidle');
   }
   expect(errors).toEqual([]);
+});
+
+test('the analytics beacon is wired correctly when a token is configured', async ({ page }) => {
+  // No token in local development, so there is nothing to assert there.
+  // In CI the repository variable is set and the beacon must carry it.
+  await page.route('**cloudflareinsights.com/**', (r) =>
+    r.fulfill({ status: 200, contentType: 'application/javascript', body: '' })
+  );
+  await page.goto('/');
+
+  const beacon = await page.evaluate(() => {
+    const el = document.querySelector('script[src*="cloudflareinsights.com"]');
+    if (!el) return null;
+    return { type: el.getAttribute('type'), data: el.getAttribute('data-cf-beacon') };
+  });
+
+  test.skip(beacon === null, 'no beacon in this build — NEXT_PUBLIC_CF_BEACON_TOKEN is unset');
+
+  expect(beacon.type).toBe('module');
+  expect(JSON.parse(beacon.data).token).toMatch(/^[a-f0-9]{16,}$/);
 });
